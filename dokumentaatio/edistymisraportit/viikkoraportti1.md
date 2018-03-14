@@ -1,4 +1,4 @@
-##Viikkoraportti 1
+## Viikkoraportti 1
 
 Tuntimäärä ~5h
 
@@ -9,5 +9,3 @@ Aiheen valinta määräytyi oman mielenkiinnon ja mahdollisimman yksinkertaisen,
 Seuraavaksi on edessä työympäristön ja itse projektin pystytys sekä tietorakenteen toteutus ja testaus.
 
 Toistaiseksi epäselvyyksiä ainoastaan aikataulun kanssa, päivämäärät vaikuttaa olevan vähän miten sattuu esim. kurssiwikin ensimmäisen ja viimeisen palautuksen osalta sekä githubin etusivun taulukossa.
-
-...
