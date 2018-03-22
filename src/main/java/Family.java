@@ -1,4 +1,4 @@
-import java.util.*
+import java.util.*;
 
 public class Family{
 	private List<Person> family;
