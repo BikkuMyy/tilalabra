@@ -17,6 +17,6 @@ public class Family{
 	}
 
 	public void addChild(Person person, Person child){
-		person.addChild(child)
+		person.addChild(child);
 	}
 }

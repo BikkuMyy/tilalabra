@@ -17,6 +17,6 @@ public class Person {
 	}
 
 	public void addChild (Person person){
-		this.children.add(person)
+		this.children.add(person);
 	}
 } 
