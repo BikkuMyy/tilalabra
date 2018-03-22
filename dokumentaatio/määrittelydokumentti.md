@@ -1,4 +1,4 @@
-##Aihemäärittely
+## Aihemäärittely
 
 Sukulaisuusverkko -tietorakenne ja eri algoritmien soveltaminen verkon ominaisuuksien selvittämiseen.
 
