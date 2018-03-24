@@ -1,4 +1,8 @@
+/**
+* Luokka edustaa kahden henkilön välisiä kumppanuuksia.
+*/
 public class Relation {
+
     private Person[] partners;
 
     public Relation(Person p1, Person p2) {
@@ -7,7 +11,10 @@ public class Relation {
         this.partners[1] = p2;
     }
 
-    public Person getPartner(){
+    /**
+    * Metodi palauttaa kumppanuuden toisen osapuolen.
+    */
+    public Person getPartner() {
         return this.partners[1];
     }
 }
