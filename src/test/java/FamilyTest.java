@@ -39,6 +39,4 @@ public class FamilyTest {
 
         assertTrue(parent.getChildren().contains(child));
     }
-
-    //add child
 }
