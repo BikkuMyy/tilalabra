@@ -1,3 +1,5 @@
+package graph;
+
 
 import java.util.*;
 
@@ -8,12 +10,14 @@ public class Person {
 
     private List<Relation> relations;
     private List<Person> children;
+    private List<Person> parents;
     private String name;
 
     public Person (String name) {
         this.name = name;
         this.relations = new ArrayList<>();
         this.children = new ArrayList<>();
+        this.parents = new ArrayList<>();
     }
 
     /**
@@ -30,8 +34,15 @@ public class Person {
     *
     * @param person
     */
-    public void addChild (Person person) {
+    public void addChild(Person person) {
         this.children.add(person);
+    }
+
+    /**
+    * Metodi lisää parametrina annetun henkilön kyseisen henkilön vanhemmaksi.
+    */
+    public void addParent(Person person) {
+        this.parents.add(person);
     }
 
     public String getName() {
@@ -49,11 +60,12 @@ public class Person {
         return partners;
     }
 
-    /**
-    * Metodi palauttaa listan kyseisen henkilön lapsista.
-    */
     public List<Person> getChildren() {
         return this.children;
+    }
+
+    public List<Person> getParents() {
+        return this.parents;
     }
 
     /**
@@ -64,11 +76,15 @@ public class Person {
         sb.append("\n" + this.name);
         sb.append("\nKumppanit: ");
         for (Person partner : getPartners()) {
-            sb.append(partner.getName());
+            sb.append(partner.getName()+" ");
         }
         sb.append("\nLapset: ");
         for (Person child : this.children) {
-            sb.append(child.getName());
+            sb.append(child.getName()+" ");
+        }
+        sb.append("\nVanhemmat: ");
+        for (Person parent : this.parents) {
+            sb.append(parent.getName()+" ");
         }
 
         return sb.toString();

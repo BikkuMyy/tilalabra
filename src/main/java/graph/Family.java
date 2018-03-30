@@ -1,3 +1,5 @@
+package graph;
+
 import java.util.*;
 
 /**
@@ -38,14 +40,27 @@ public class Family {
     }
 
     /**
-    * Metodi lisää toisena parametsina saamansa henkilön
+    * Metodi lisää toisena parametrina saamansa henkilön
     * ensimmäisenä saamansa parametrin lapseksi.
     *
-    * @param person
+    * @param parent
     * @param child
     */
-    public void addChild(Person person, Person child) {
-        person.addChild(child);
+    public void addChild(Person parent, Person child) {
+        parent.addChild(child);
+        child.addParent(parent);
+    }
+
+    /**
+    * Metodi lisää toisena parametrina saamansa henkilön
+    * ensimmäisenä saamansa parametrin vanhemmaksi.
+    *
+    * @param child
+    * @param parent
+    */
+    public void addParent(Person child, Person parent) {
+        child.addParent(parent);
+        parent.addChild(child);
     }
 
     /**

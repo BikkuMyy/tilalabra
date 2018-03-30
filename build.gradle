@@ -12,7 +12,7 @@ apply plugin: 'application'
 apply plugin: 'checkstyle'
 apply plugin: 'jacoco'
 
-mainClassName = 'Main'
+mainClassName = 'familytree.Main'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

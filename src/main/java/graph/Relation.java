@@ -1,3 +1,5 @@
+package graph;
+
 /**
 * Luokka edustaa kahden henkilön välisiä kumppanuuksia.
 */

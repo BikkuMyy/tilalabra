@@ -1,3 +1,6 @@
+package ui;
+
+import graph.Family;
 import java.util.*;
 
 /**
