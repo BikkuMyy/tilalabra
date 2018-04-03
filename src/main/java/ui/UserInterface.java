@@ -1,6 +1,6 @@
 package ui;
 
-import graph.Family;
+import graph.*;
 import java.util.*;
 
 /**
@@ -23,5 +23,21 @@ public class UserInterface {
 	public void start(){
 		System.out.print("Tervetuloa käyttämään sukulaisuusverkkoa!\n");
 		System.out.print(family.toString());
+	}
+
+	public void printOptions(){
+
+	}
+
+	public Person findPerson(String name){
+		return null;
+	}
+
+	public boolean addPerson(String name){
+		return true;
+	}
+
+	public boolean findRelation(String p1, String p2) {
+		return true;
 	}
 }

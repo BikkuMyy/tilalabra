@@ -17,13 +17,19 @@ public class FamilyTest {
     }
 
     @Test
-    public void personCanBeAdded() {
+    public void newPersonIsAdded() {
         family.addPerson(new Person("Tester"));
         assertEquals(this.family.getFamily().size(), 1);
     }
+
+    @Test
+    public void existingPersonIsNotAdded() {
+        assertTrue(family.addPerson(new Person("Tester")));
+        assertFalse(family.addPerson(new Person("Tester")));
+    }
     
     @Test
-    public void relationCanBeAdded() {
+    public void relationIsAdded() {
         Person partner = new Person("Partner");
         Person tester = new Person("Tester");
         family.addRelation(partner, tester);
@@ -33,7 +39,7 @@ public class FamilyTest {
     }
 
     @Test
-    public void childCanBeAdded() {
+    public void childIsAdded() {
         Person parent = new Person("Parent");
         Person child = new Person("Child");
         family.addChild(parent, child);
@@ -41,5 +47,12 @@ public class FamilyTest {
         assertTrue(parent.getChildren().contains(child));
     }
 
-    //parentCanBeAdded
-}
+    @Test
+    public void parentIsAdded() {
+        Person parent = new Person("Parent");
+        Person child = new Person("Child");
+        family.addParent(child, parent);
+
+        assertTrue(child.getParents().contains(parent));
+    }
+} 

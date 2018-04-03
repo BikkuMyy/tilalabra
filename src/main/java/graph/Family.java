@@ -8,23 +8,30 @@ import java.util.*;
 */
 public class Family {
 
-    private List<Person> family;
+    private Map<String, Person> family;
 
     public Family() {
-        this.family = new ArrayList<Person>();
+        this.family = new HashMap<>();
     }
 
-    public List<Person> getFamily(){
-        return this.family;
+    public Collection<Person> getFamily(){
+        return this.family.values();
     }
 
     /**
     * Metodi lisää parametrina saamansa henkilön sukulaisuusverkkoon.
     *
     * @param person
+    * @return boolean
     */
-    public void addPerson(Person person) {
-        this.family.add(person);
+    public boolean addPerson(Person person) {
+        String name = person.getName();
+        if(!this.family.containsKey(name)){
+            this.family.put(name, person);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -64,12 +71,25 @@ public class Family {
     }
 
     /**
+    * Metodi palauttaa totuusarvon sen perusteella,
+    * löytyykö parametrina annettua henkilöä verkosta.
+    *
+    * @param person
+    * @return boolean
+    */
+    public boolean containsPerson(String person){
+        return this.family.containsKey(person);
+    }
+
+    /**
     * Metodi palauttaa kaikkien sukulaisuusverkon sisältämien
     * henkilöiden tiedot merkkijonona.
+    *
+    * @return String
     */
     public String toString() { 
         StringBuilder sb = new StringBuilder();
-        for (Person person : this.family){
+        for (Person person : this.family.values()){
             sb.append(person.toString()+"\n");
         }
 
