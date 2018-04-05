@@ -1,6 +1,6 @@
 package familytree;
 
-import ui.UserInterface;
+import ui.*;
 import graph.*;
 import java.util.*;
 
@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         Family family = initializeFamily();
-        UserInterface UI = new UserInterface(new Scanner(System.in), family);
+        UserInterface UI = new UserInterface(new ConsoleIO(), family);
         UI.start();
     }
 
@@ -24,10 +24,10 @@ public class Main {
         family.addPerson(ales);
         family.addPerson(marija);
         family.addRelation(mari, ales);
-        family.addChild(marija, ales);
+        family.addParentChild(marija, ales);
         family.addPerson(joze);
         family.addRelation(marija, joze);
-        family.addParent(ales, joze);
+        family.addParentChild(joze, ales);
 
         return family;
     }

@@ -39,20 +39,13 @@ public class FamilyTest {
     }
 
     @Test
-    public void childIsAdded() {
+    public void childAndParentAreAdded() {
         Person parent = new Person("Parent");
         Person child = new Person("Child");
-        family.addChild(parent, child);
+        family.addParentChild(parent, child);
 
         assertTrue(parent.getChildren().contains(child));
-    }
-
-    @Test
-    public void parentIsAdded() {
-        Person parent = new Person("Parent");
-        Person child = new Person("Child");
-        family.addParent(child, parent);
-
         assertTrue(child.getParents().contains(parent));
     }
+
 } 

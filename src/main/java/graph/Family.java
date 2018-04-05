@@ -34,6 +34,13 @@ public class Family {
         }
     }
 
+    public Person findPerson(String name) {
+        if (this.family.containsKey(name)){
+            return this.family.get(name);
+        }
+        return null;
+    }
+
     /**
     * Metodi lisää kumppanuuden kahden parametrina saamansa
     * henkilön välille.
@@ -48,26 +55,14 @@ public class Family {
 
     /**
     * Metodi lisää toisena parametrina saamansa henkilön
-    * ensimmäisenä saamansa parametrin lapseksi.
+    * ensimmäisenä saamansa parametrin lapseksi ja päinvastoin.
     *
     * @param parent
     * @param child
     */
-    public void addChild(Person parent, Person child) {
+    public void addParentChild(Person parent, Person child) {
         parent.addChild(child);
         child.addParent(parent);
-    }
-
-    /**
-    * Metodi lisää toisena parametrina saamansa henkilön
-    * ensimmäisenä saamansa parametrin vanhemmaksi.
-    *
-    * @param child
-    * @param parent
-    */
-    public void addParent(Person child, Person parent) {
-        child.addParent(parent);
-        parent.addChild(child);
     }
 
     /**
