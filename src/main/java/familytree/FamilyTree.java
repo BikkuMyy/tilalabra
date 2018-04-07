@@ -4,7 +4,7 @@ import graph.*;
 
 public class FamilyTree {
 
-	public Family initializeFamily() {
+    public Family initializeFamily() {
         Family family = new Family();
 
         Person mari = new Person("Mari");
