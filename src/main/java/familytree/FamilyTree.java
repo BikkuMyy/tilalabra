@@ -1,18 +1,10 @@
 package familytree;
 
-import ui.*;
 import graph.*;
 
-public class Main {
+public class FamilyTree {
 
-    public static void main(String[] args) {
-        FamilyTree ft = new FamilyTree();
-        Family family = ft.initializeFamily();
-        UserInterface UI = new UserInterface(new ConsoleIO(), family);
-        UI.start();
-    }
-
-    public static Family initializeFamily() {
+	public Family initializeFamily() {
         Family family = new Family();
 
         Person mari = new Person("Mari");
