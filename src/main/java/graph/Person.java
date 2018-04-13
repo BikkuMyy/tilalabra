@@ -1,6 +1,6 @@
 package graph;
 
-
+import datastructures.MyList;
 import java.util.*;
 
 /**
@@ -15,9 +15,9 @@ public class Person {
 
     public Person (String name) {
         this.name = name;
-        this.relations = new ArrayList<>();
-        this.children = new ArrayList<>();
-        this.parents = new ArrayList<>();
+        this.relations = new MyList<>();
+        this.children = new MyList<>();
+        this.parents = new MyList<>();
     }
 
     /**
@@ -40,6 +40,7 @@ public class Person {
 
     /**
     * Metodi lisää parametrina annetun henkilön kyseisen henkilön vanhemmaksi.
+     * @param person
     */
     public void addParent(Person person) {
         this.parents.add(person);
@@ -51,9 +52,10 @@ public class Person {
 
     /**
     * Metodi palauttaa listan kyseisen henkilön kumppaneista.
+     * @return partners
     */
     public List<Person> getPartners() {
-        List<Person> partners = new ArrayList<>();
+        List<Person> partners = new MyList<>();
         for (Relation relation : this.relations) {
             partners.add(relation.getPartner());
         }
@@ -68,9 +70,6 @@ public class Person {
         return this.parents;
     }
 
-    /**
-    * Metodi palauttaa kyseisen henkilön nimen, kumppanit ja lapset merkkijonona.
-    */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("\n" + this.name);
