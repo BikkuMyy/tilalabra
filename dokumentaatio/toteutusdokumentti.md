@@ -3,6 +3,7 @@
 ### Ohjelman yleisrakenne
 
 Ohjelma koostuu tietorakenteesta, sitä käyttävistä toiminnallisuuksista ja käyttöliittymästä. Rakennetta havainnollistaa oheinen luokkakaavio:
+
 ![Luokkakaavio](/dokumentaatio/tiralabra.png)
 
 TODO:
