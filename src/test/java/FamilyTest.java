@@ -1,3 +1,4 @@
+
 import graph.*;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -23,11 +24,24 @@ public class FamilyTest {
     }
 
     @Test
+    public void existingPersonIsFound() {
+        Person tester = new Person("Tester");
+        family.addPerson(tester);
+        assertEquals(tester, family.findPerson("Tester"));
+    }
+
+    @Test
+    public void nonExistingPersonIsFound() {
+        Person tester = new Person("Tester");
+        assertEquals(null, family.findPerson("Tester"));
+    }
+
+    @Test
     public void existingPersonIsNotAdded() {
         assertTrue(family.addPerson(new Person("Tester")));
         assertFalse(family.addPerson(new Person("Tester")));
     }
-    
+
     @Test
     public void relationIsAdded() {
         Person partner = new Person("Partner");
@@ -35,7 +49,7 @@ public class FamilyTest {
         family.addRelation(partner, tester);
 
         assertTrue(partner.getPartners().contains(tester));
-        assertTrue(tester.getPartners().contains(partner));   
+        assertTrue(tester.getPartners().contains(partner));
     }
 
     @Test
@@ -48,4 +62,15 @@ public class FamilyTest {
         assertTrue(child.getParents().contains(parent));
     }
 
-} 
+    @Test
+    public void containsReturnsTrue() {
+        family.addPerson(new Person("Tester"));
+        assertTrue(family.containsPerson("Tester"));
+    }
+
+    @Test
+    public void containsReturnsFalse() {
+        assertFalse(family.containsPerson("Tester"));
+    }
+
+}
