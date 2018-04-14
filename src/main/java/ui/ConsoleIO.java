@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 public class ConsoleIO implements IO {
 
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
+
+    public ConsoleIO() {
+        this.scanner = new Scanner(System.in);
+    }
 
     @Override
     public String nextLine() {
@@ -17,7 +21,7 @@ public class ConsoleIO implements IO {
     }
 
     @Override
-    public void print(String s){
-    	System.out.print(s);
+    public void print(String s) {
+        System.out.print(s);
     }
 }

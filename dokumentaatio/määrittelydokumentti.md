@@ -8,7 +8,4 @@ Kun syötteeksi annetaan kaksi henkilöä, voidaan selvittää, ovatko he sukua 
 
 Koska kyseessä on suunnattu verkko, polunetsintään kahden solmun välillä (ensimmäinen käyttötapaus) voidaan käyttää leveys- tai syvyyssuuntaista hakua ja syklittömyyden tarkistukseen (toinen käyttötapaus) syvyyssuuntaista hakua. Sekä leveys- että syvyyssuuntaisen haun aikavaativuus on O(V+E) ja tilavaativuus O(V), joissa V on solmujen ja E kaarien määrä.
 
-Lähteet:
-[Tietorakenne](https://youtu.be/gQ3iqBh69fU?t=240)
-
 
