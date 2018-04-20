@@ -80,6 +80,18 @@ public class Family {
     }
 
     /**
+     * Apumetodi, joka populoi visited-listan.
+     * 
+     */
+    public Map<String, Boolean> initializeVisitedMap() {
+        Map<String, Boolean> visited = new HashMap();
+        for (String name : getNames()) {
+            visited.put(name, false);
+        }
+        return visited;
+    }
+
+    /**
      * Metodi palauttaa kaikkien sukulaisuusverkon sisältämien henkilöiden
      * tiedot merkkijonona.
      *

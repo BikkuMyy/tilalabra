@@ -4,7 +4,7 @@ import java.util.*;
 import graph.*;
 
 /**
- * Luokka sisältää toiminnallisuuden sukulaisuuksien määrittämiseen.
+ * Sisältää toiminnallisuuden sukulaisuuksien määrittämiseen.
  * @author mari
  */
 public class RelationFinder {
@@ -12,12 +12,11 @@ public class RelationFinder {
     private Map<String, Boolean> visited;
 
     public RelationFinder(Family family) {
-        this.visited = new HashMap();
-        initializeMap(family);
+        this.visited = family.initializeVisitedMap();
     }
 
     /**
-     * Metodi määrittää, ovatko parametreina annetut henkiöt sukua.
+     * Määrittää, ovatko parametreina annetut henkiöt sukua.
      * @param start henkilö1
      * @param end   henkilö2
      * @return boolean
@@ -27,14 +26,14 @@ public class RelationFinder {
     }
 
     /**
-     * Metosi vastaa syvyyshaun toteutuksesta.
+     * Toteuttaa syvyyshaun verkossa.
      * @param start aloituskohta
-     * @param end   etsitty lopetus
+     * @param end   etsitty lopetuskohta
      * @return boolean
      */
     public boolean dfs(Person start, Person end) {
         String endName = end.getName();
-        ArrayDeque<Person> queue = new ArrayDeque();
+        ArrayDeque<Person> queue = new ArrayDeque<>();
         Person processed = start;
         queue.add(start);
 
@@ -74,15 +73,5 @@ public class RelationFinder {
         }
 
         return false;
-    }
-
-    /**
-     * Apumetodi, joka populoi visited-listan.
-     * @param family 
-     */
-    private void initializeMap(Family family) {
-        for (String name : family.getNames()) {
-            this.visited.put(name, false);
-        }
     }
 }

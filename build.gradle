@@ -32,7 +32,7 @@ check.dependsOn jacocoTestReport
 
 jar {
     manifest {
-       attributes 'Main-Class': 'Main'
+       attributes 'Main-Class': 'familytree.Main'
    }
 }
 
