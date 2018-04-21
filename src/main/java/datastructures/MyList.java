@@ -68,15 +68,19 @@ public class MyList<E> implements List {
         }
         return -1;
     }
-    
+
     @Override
-    public Iterator iterator() {
+    public Iterator<E> iterator() {
         return new MyIterator();
     }
-    
-    private class MyIterator implements Iterator {
+
+    @Override
+    public ListIterator<E> listIterator() {
+        return new MyListIterator();
+    }
+
+    private class MyIterator<E> implements Iterator<E> {
         int currentIndex;
-        int lastReturned = -1;
 
         @Override
         public boolean hasNext() {
@@ -84,11 +88,66 @@ public class MyList<E> implements List {
         }
 
         @Override
-        public Object next() {
+        public E next() {
             int i = currentIndex;
             currentIndex++;
             Object[] elements = MyList.this.elements;
-            return (E) elements[lastReturned = i];
+            return (E) elements[i];
+        }
+
+    }
+
+    private class MyListIterator<E> extends MyIterator<E> implements ListIterator<E> {
+
+        MyListIterator() {
+            super();
+            currentIndex = 0;
+        }
+
+        @Override
+        public void add(E e) {
+
+        }
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public boolean hasPrevious() {
+            return currentIndex != 0;
+        }
+
+        @Override
+        public E next() {
+            return super.next();
+        }
+
+        @Override
+        public int nextIndex() {
+            return 0;
+        }
+
+        @Override
+        public E previous() {
+
+            return null;
+        }
+
+        @Override
+        public int previousIndex() {
+            return currentIndex - 1;
+        }
+
+        @Override
+        public void remove() {
+
+        }
+
+        @Override
+        public void set(E e) {
+
         }
 
     }
@@ -100,11 +159,6 @@ public class MyList<E> implements List {
 
     @Override
     public int lastIndexOf(Object o) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public ListIterator listIterator() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -165,13 +219,12 @@ public class MyList<E> implements List {
 
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public Object[] toArray(Object[] a) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    
 }

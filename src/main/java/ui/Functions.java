@@ -3,6 +3,7 @@ package ui;
 import java.util.*;
 import graph.*;
 import familytree.RelationFinder;
+import familytree.SurvivalMode;
 
 public class Functions {
 
@@ -17,6 +18,10 @@ public class Functions {
         this.family = family;
     }
 
+    /**
+     * Toteuttaa parametrina saamansa funktion.
+     * @param   function
+     */
     public boolean implementFunction(String function) {
         if (this.functions.containsKey(function)) {
             functions.get(function).implement();
@@ -26,7 +31,7 @@ public class Functions {
     }
 
     /**
-     * Metodi etsii kysyttyä henkilöä verkosta
+     * Etsii kysyttyä henkilöä verkosta.
      */
     public void findPerson() {
         String name = askUserFor("Etsi nimellä: ");
@@ -39,7 +44,7 @@ public class Functions {
     }
 
     /**
-     * Metodi toteuttaa henkilön lisäämisen.
+     * Toteuttaa henkilön lisäämisen.
      */
     public void addPerson() {
         String name = askUserFor("Lisää nimellä: ");
@@ -50,7 +55,7 @@ public class Functions {
     }
 
     /**
-     * Metodi lisää halutun tyyppisen suhteen henkilöiden välille.
+     * Lisää halutun tyyppisen suhteen henkilöiden välille.
      */
     public void addRelation() {
 
@@ -70,7 +75,7 @@ public class Functions {
     }
 
     /**
-     * Metodi lisää kumppanuuden henkilöiden välille.
+     * Lisää kumppanuuden henkilöiden välille.
      */
     public void addPartner() {
         Person p1 = askUntilValid("Henkilö 1: ");
@@ -86,7 +91,7 @@ public class Functions {
     }
 
     /**
-     * Metodi lisää vanhempi-lapsi suhteen henkilöiden välille.
+     * Lisää vanhempi-lapsi suhteen henkilöiden välille.
      */
     public void addParentChild() {
         Person parent = askUntilValid("Vanhempi: ");
@@ -102,8 +107,8 @@ public class Functions {
     }
 
     /**
-     * Apumetodi, joka kysyy henkilön nimeä, kunnes annetaan verkosta löytyvä
-     * nimi.
+     * Apumetodi, joka kysyy henkilön nimeä, 
+     * kunnes annetaan verkosta löytyvä nimi.
      *
      * @param text tulostettava merkkijono
      * @return Person löydetty henkilö
@@ -123,7 +128,7 @@ public class Functions {
     }
 
     /**
-     * Metodi tarkistaa, ovatko kysytyt henkilöt sukua toisilleen.
+     * Tarkistaa, ovatko kysytyt henkilöt sukua toisilleen.
      */
     public void findRelation() {
         Person p1 = askUntilValid("Henkilö 1: ");
@@ -134,7 +139,18 @@ public class Functions {
         } else {
             this.io.print("Henkilöt eivät ole sukua.");
         }
+    }
 
+    /**
+     * Selvittää verkon kauimmaista sukua olevat.
+     */
+    public void survivalMode(){
+        SurvivalMode survive = new SurvivalMode(this.family);
+        this.io.println("Topologinen järjestys: ");
+
+        for(String person : survive.topologicalSort()){
+            this.io.println(person);
+        }
     }
 
     public void printAll() {
@@ -175,6 +191,10 @@ public class Functions {
 
         functions.put("Kaikki", (Function) () -> {
             printAll();
+        });
+
+        functions.put("Survive", (Function) () -> {
+            survivalMode();
         });
     }
 
