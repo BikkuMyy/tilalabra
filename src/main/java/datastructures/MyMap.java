@@ -3,7 +3,6 @@ package datastructures;
 
 import java.util.*;
 
-import javax.security.auth.callback.TextOutputCallback;
 
 public class MyMap<K, V> implements Map {
 
@@ -19,6 +18,8 @@ public class MyMap<K, V> implements Map {
 
     public MyMap() {
         this.loadFactor = DEFAULT_LOAD_FACTOR;
+        threshold = (int)(DEFAULT_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR);
+        entries = new Entry[DEFAULT_INITIAL_CAPACITY];
     }
 
     /**
@@ -133,7 +134,7 @@ public class MyMap<K, V> implements Map {
         Entry<K, V>[] oldTable = entries;
         int oldCapacity = oldTable.length;
         int oldThr = threshold;
-        int newCapacity;
+        int newCapacity = oldCapacity << 1;
         int newThr;
 
         if (oldCapacity >= MAXIMUM_CAPACITY) {
