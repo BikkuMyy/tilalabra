@@ -5,11 +5,11 @@ Viikko kului tietorakennetta paranteluun, käyttöliittymän laajennukseen ja le
 
 Edellisen viikon palautuksen jälkeen huomasin, että tietorakenne kaipaa vielä hiomista. Nykyisellään siitä voitaisiin ainoastaan selvittää sukulaisuussuhteita ylhäältä alaspäin eli vanhemmista lapsiin, mutta ei toiseen suuntaan. Alla olevissa kuvissa tilanne nyt ja toisessa "parannuksen" jälkeen.
 
-[Nykyinen verkko](graph1.png)
+![Nykyinen verkko](graph1.png)
 
 Sen lisäksi, että kukin "Henkilö" -olio sisältää tiedon lapsistaan, tulisi sen myös tuntea vanhempansa, jotta on mahdollista selvittää, ovatko esimerkiksi AT ja KrM sukua toisilleen. 
 
-[Parannettu verkko](graph2.png)
+![Parannettu verkko](graph2.png)
 
 Tässä kohtaa hämmennyin hieman, mutta hetken pohdinnan jälkeen tulin siihen tulokseen, että verkon täytyy edelleen olla suunnattu, koska ei ole yhdentekevää, kumpi henkilö on vanhempi ja kumpi lapsi.
 
