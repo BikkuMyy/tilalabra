@@ -6,7 +6,7 @@
 
 ## Dokumentaatio
 
-- ![Määrittelydokumentti](/dokumentaatio/määrittelydokumentti.md)
-- ![Toteutusdokumentti](/dokumentaatio/toteutusdokumentti.md)
-- ![Testausdokumentti](/dokumentaatio/testausdokumentti.md)
-- ![Edistymisraportit](/dokumentaatio/edistymisraportit/)
+- [Määrittelydokumentti](/dokumentaatio/määrittelydokumentti.md)
+- [Toteutusdokumentti](/dokumentaatio/toteutusdokumentti.md)
+- [Testausdokumentti](/dokumentaatio/testausdokumentti.md)
+- [Edistymisraportit](/dokumentaatio/edistymisraportit/)
