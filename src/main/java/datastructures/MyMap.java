@@ -3,8 +3,7 @@ package datastructures;
 
 import java.util.*;
 
-
-public class MyMap<K, V> implements Map {
+public class MyMap<K,V> implements Map<K,V> {
 
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; //16
     static final int MAXIMUM_CAPACITY = 1 << 30;
@@ -18,7 +17,7 @@ public class MyMap<K, V> implements Map {
 
     public MyMap() {
         this.loadFactor = DEFAULT_LOAD_FACTOR;
-        threshold = (int)(DEFAULT_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR);
+        threshold = (int) (DEFAULT_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR);
         entries = new Entry[DEFAULT_INITIAL_CAPACITY];
     }
 
@@ -58,77 +57,103 @@ public class MyMap<K, V> implements Map {
     }
 
     @Override
-    public Object get(Object key) {
+    public V get(Object key) {
         Entry<K, V> e = getEntry(hash(key), key);
         return e == null ? null : e.value;
     }
 
     final Entry<K, V> getEntry(int hash, Object key) {
-        Entry<K, V>[] table = entries;
-        int n = table.length;
-        Entry<K, V> first = table[(n - 1) & hash];
+        Entry<K, V>[] table;
+        int n;
+        Entry<K, V> first;
         Entry e;
-        K k = first.key;
+        K k;
 
         //check first node
-        if (table != null && n > 0 && first != null) {
-            if (first.hash == hash && (k == key || key != null && key.equals(k))) {
+        if ((table = entries) != null && (n = table.length) > 0 && (first = table[(n - 1) & hash]) != null) {
+
+            if (first.hash == hash && ((k = first.key) == key || (key != null && key.equals(k)))) {
                 return first;
             }
-        }
-        if ((e = first.next) != null) {
-            do {
-                if (e.hash == hash && ((k = (K) e.key) == key || (key != null && key.equals(k)))) {
-                    return e;
-                }
-            } while ((e = e.next) != null);
-        }
 
+            if ((e = first.next) != null) {
+                do {
+                    if (e.hash == hash && ((k = (K) e.key) == key || (key != null && key.equals(k)))) {
+                        return e;
+                    }
+                } while ((e = e.next) != null);
+            }
+        }
         return null;
     }
 
     @Override
     public V put(Object key, Object value) {
-        return putValue(hash(key), (K) key, (V) value);
-    }
-
-    final V putValue(int hash, K key, V value) {
-        Entry<K, V>[] table = entries;
-        Entry<K, V> toPut;
-        int n = table.length;
-        int i;
-
-        if ((toPut = table[i = (n - 1) & hash]) == null)
-            table[i] = new Entry(key, value, null, hash);
-        else {
-            Entry<K, V> e;
-            K k;
-
-            if (toPut.hash == hash && ((k = toPut.key) == key || (key != null && key.equals(k))))
-                e = toPut;
-            else {
-                for (int binCount = 0;; ++binCount) {
-                    if ((e = toPut.next) == null) {
-                        toPut.next = new Entry(key, value, null, hash);
-                        break;
-                    }
-                    if (e.hash == hash && ((k = e.key) == key || (key != null && key.equals(k))))
-                        break;
-                    toPut = e;
-                }
-            }
-            if (e != null) { // existing mapping for key
+        int hash = hash(key.hashCode());
+        int i = indexFor(hash, entries.length);
+        for (Entry<K,V> e = entries[i]; e != null; e = e.next) {
+            Object k;
+            if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
                 V oldValue = e.value;
+                e.value = (V) value;
+                
                 return oldValue;
             }
         }
 
-        if (++size > threshold) {
+        addEntry(hash, (K) key, (V) value, i);
+        return null;
+        //return putValue(hash(key), (K) key, (V) value);
+    }
+
+    void addEntry(int hash, K key, V value, int bucketIndex) {
+        Entry<K,V> e = entries[bucketIndex];
+        entries[bucketIndex] = new Entry<>(key, value, e, hash);
+        if (++size > threshold){
             resize();
         }
-
-        return null;
     }
+
+    // final V putValue(int hash, K key, V value) {
+    //     Entry<K, V>[] table = entries;
+    //     Entry<K, V> toPut;
+    //     int n = table.length;
+    //     int i;
+
+    //     //jos avainta ei ole:
+    //     if ((toPut = table[i = (n - 1) & hash]) == null)
+    //         table[i] = new Entry(key, value, null, hash);
+    //     //muuten korvataan vanha
+    //     else {
+    //         Entry<K, V> e;
+    //         K k;
+
+    //         if (toPut.hash == hash && ((k = toPut.key) == key || (key != null && key.equals(k))))
+    //             e = toPut;
+    //         else {
+    //             for (int binCount = 0;; ++binCount) {
+    //                 if ((e = toPut.next) == null) {
+    //                     toPut.next = new Entry(key, value, null, hash);
+    //                     break;
+    //                 }
+    //                 if (e.hash == hash && ((k = e.key) == key || (key != null && key.equals(k)))){
+    //                     break;
+    //                 }
+    //                 toPut = e;
+    //             }
+    //         }
+    //         if (e != null) { // existing mapping for key
+    //             V oldValue = e.value;
+    //             return oldValue;
+    //         }
+    //     }
+
+    //     if (++size > threshold) {
+    //         resize();
+    //     }
+
+    //     return null;
+    // }
 
     final Entry<K, V>[] resize() {
         Entry<K, V>[] oldTable = entries;
@@ -154,7 +179,7 @@ public class MyMap<K, V> implements Map {
         Entry[] src = entries;
         int newCapacity = newTable.length;
         for (int j = 0; j < src.length; j++) {
-            Entry<K, V> e = src[j];
+            Entry<K,V> e = src[j];
             if (e != null) {
                 src[j] = null;
                 do {
@@ -173,7 +198,7 @@ public class MyMap<K, V> implements Map {
     }
 
     @Override
-    public Object remove(Object key) {
+    public V remove(Object key) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -193,8 +218,8 @@ public class MyMap<K, V> implements Map {
     }
 
     @Override
-    public Collection values() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Collection<V> values() {
+        return new MyValues();
     }
 
     @Override
@@ -202,7 +227,7 @@ public class MyMap<K, V> implements Map {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    static class Entry<K, V> implements Map.Entry {
+    static class Entry<K,V> implements Map.Entry<K,V> {
         final K key;
         V value;
         Entry<K, V> next;
@@ -226,7 +251,7 @@ public class MyMap<K, V> implements Map {
         }
 
         @Override
-        public Object setValue(Object value) {
+        public V setValue(V value) {
             V oldValue = this.value;
             this.value = (V) value;
             return oldValue;
@@ -266,19 +291,27 @@ public class MyMap<K, V> implements Map {
         public int size() {
             return size;
         }
+
+        public boolean contains(Object o) {
+            return containsKey(o);
+        }
     }
 
-    final class MyValues extends AbstractCollection<V>{
+    final class MyValues extends AbstractCollection<V> {
 
-		@Override
-		public Iterator<V> iterator() {
-			return new MyValueIterator();
-		}
+        @Override
+        public Iterator<V> iterator() {
+            return new MyValueIterator();
+        }
 
-		@Override
-		public int size() {
-			return size;
-		}
+        @Override
+        public int size() {
+            return size;
+        }
+
+        public boolean contains(Object o) {
+            return containsValue(o);
+        }
 
     }
 
@@ -321,9 +354,9 @@ public class MyMap<K, V> implements Map {
             return e.getValue();
         }
 
-		@Override
-		public boolean hasNext() {
-			return next != null;
-		}
+        @Override
+        public boolean hasNext() {
+            return next != null;
+        }
     }
 }

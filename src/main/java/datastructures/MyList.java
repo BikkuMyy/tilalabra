@@ -8,7 +8,7 @@ import java.util.*;
  * @author mari
  * @param <E>
  */
-public class MyList<E> implements List {
+public class MyList<E> implements List<E> {
 
     private int size;
     private Object[] elements;
@@ -44,11 +44,11 @@ public class MyList<E> implements List {
     }
 
     @Override
-    public Object get(int index) {
+    public E get(int index) {
         if (index >= size) {
             throw new IndexOutOfBoundsException("Index " + index + " >= " + this.size);
         }
-        return elements[index];
+        return (E) elements[index];
     }
 
     @Override
@@ -183,7 +183,7 @@ public class MyList<E> implements List {
     }
 
     @Override
-    public Object remove(int index) {
+    public E remove(int index) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
