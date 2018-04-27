@@ -146,11 +146,7 @@ public class Functions {
      */
     public void survivalMode(){
         SurvivalMode survive = new SurvivalMode(this.family);
-        this.io.println("Topologinen järjestys: ");
-
-        for(String person : survive.topologicalSort()){
-            this.io.println(person);
-        }
+        survive.findBestMatch();
     }
 
     public void printAll() {

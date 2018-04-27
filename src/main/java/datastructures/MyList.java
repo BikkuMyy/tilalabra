@@ -106,7 +106,6 @@ public class MyList<E> implements List<E> {
 
         @Override
         public void add(E e) {
-
         }
 
         @Override
@@ -131,7 +130,6 @@ public class MyList<E> implements List<E> {
 
         @Override
         public E previous() {
-
             return null;
         }
 

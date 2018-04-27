@@ -3,7 +3,7 @@ package datastructures;
 
 import java.util.*;
 
-public class MyMap<K,V> implements Map<K,V> {
+public class MyMap<K, V> implements Map<K, V> {
 
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; //16
     static final int MAXIMUM_CAPACITY = 1 << 30;
@@ -91,12 +91,12 @@ public class MyMap<K,V> implements Map<K,V> {
     public V put(Object key, Object value) {
         int hash = hash(key.hashCode());
         int i = indexFor(hash, entries.length);
-        for (Entry<K,V> e = entries[i]; e != null; e = e.next) {
+        for (Entry<K, V> e = entries[i]; e != null; e = e.next) {
             Object k;
             if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
                 V oldValue = e.value;
                 e.value = (V) value;
-                
+
                 return oldValue;
             }
         }
@@ -106,10 +106,10 @@ public class MyMap<K,V> implements Map<K,V> {
         //return putValue(hash(key), (K) key, (V) value);
     }
 
-    void addEntry(int hash, K key, V value, int bucketIndex) {
-        Entry<K,V> e = entries[bucketIndex];
+    private void addEntry(int hash, K key, V value, int bucketIndex) {
+        Entry<K, V> e = entries[bucketIndex];
         entries[bucketIndex] = new Entry<>(key, value, e, hash);
-        if (++size > threshold){
+        if (++size > threshold) {
             resize();
         }
     }
@@ -155,17 +155,17 @@ public class MyMap<K,V> implements Map<K,V> {
     //     return null;
     // }
 
-    final Entry<K, V>[] resize() {
+    private Entry<K, V>[] resize() {
         Entry<K, V>[] oldTable = entries;
         int oldCapacity = oldTable.length;
         int oldThr = threshold;
         int newCapacity = oldCapacity << 1;
         int newThr;
 
-        if (oldCapacity >= MAXIMUM_CAPACITY) {
-            threshold = Integer.MAX_VALUE;
-            return oldTable;
-        }
+        // if (oldCapacity >= MAXIMUM_CAPACITY) {
+        //     threshold = Integer.MAX_VALUE;
+        //     return oldTable;
+        // }
 
         Entry<K, V>[] newTable = new Entry[newCapacity];
         transfer(newTable);
@@ -175,11 +175,11 @@ public class MyMap<K,V> implements Map<K,V> {
         return null;
     }
 
-    void transfer(Entry[] newTable) {
+    private void transfer(Entry[] newTable) {
         Entry[] src = entries;
         int newCapacity = newTable.length;
         for (int j = 0; j < src.length; j++) {
-            Entry<K,V> e = src[j];
+            Entry<K, V> e = src[j];
             if (e != null) {
                 src[j] = null;
                 do {
@@ -227,7 +227,7 @@ public class MyMap<K,V> implements Map<K,V> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    static class Entry<K,V> implements Map.Entry<K,V> {
+    static class Entry<K, V> implements Map.Entry<K, V> {
         final K key;
         V value;
         Entry<K, V> next;
@@ -315,35 +315,32 @@ public class MyMap<K,V> implements Map<K,V> {
 
     }
 
-    private final class MyKeyIterator implements Iterator<K> {
-        Entry<K, V> next;
-        int index;
-        Entry<K, V> current;
-
-        public final boolean hasNext() {
-            return next != null;
-        }
-
+    private final class MyKeyIterator extends MyHashIterator implements Iterator<K> {
         public K next() {
-            Entry<K, V> e = next;
-
-            if ((next = e.next) == null) {
-                Entry[] t = entries;
-                while (index < t.length && (next = t[index++]) == null)
-                    ;
-            }
-            current = e;
-            return e.getKey();
+            return nextEntry().getKey();
         }
     }
 
-    private final class MyValueIterator implements Iterator<V> {
+    private final class MyValueIterator extends MyHashIterator implements Iterator<V>{
+        public V next() {
+            return nextEntry().value;
+        }
+    }
+
+    abstract class MyHashIterator  {
         Entry<K, V> next;
         int index;
         Entry<K, V> current;
 
-        public V next() {
+        public boolean hasNext() {
+            return next != null;
+        }
+
+        final Entry<K, V> nextEntry() {
+            
             Entry<K, V> e = next;
+            if (e == null)
+                throw new NoSuchElementException();
 
             if ((next = e.next) == null) {
                 Entry[] t = entries;
@@ -351,12 +348,8 @@ public class MyMap<K,V> implements Map<K,V> {
                     ;
             }
             current = e;
-            return e.getValue();
+            return e;
         }
 
-        @Override
-        public boolean hasNext() {
-            return next != null;
-        }
     }
 }

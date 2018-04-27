@@ -15,13 +15,13 @@ public class SurvivalModeTest {
         this.survive = new SurvivalMode(family);
     }
 
-    @Test
-    public void correctTopologicalSort(){
-        List<String> expected = Arrays.asList("Kristof", "Katja", "Marija", "Joze", "Ales", "Mari", "Jukka", "Saara", "Tiina", "Tuomas", "Janne", "Daniel", "Laura");
-        List<String> topoSort = survive.topologicalSort();
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), topoSort.get(i));
-        }
+    // @Test
+    // public void correctTopologicalSort(){
+    //     List<String> expected = Arrays.asList("Kristof", "Katja", "Marija", "Joze", "Ales", "Mari", "Jukka", "Saara", "Tiina", "Tuomas", "Janne", "Daniel", "Laura");
+    //     List<String> topoSort = survive.topologicalSort();
+    //     for (int i = 0; i < expected.size(); i++) {
+    //         assertEquals(expected.get(i), topoSort.get(i));
+    //     }
         
-    }
+    // }
 }

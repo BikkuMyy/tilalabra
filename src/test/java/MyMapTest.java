@@ -20,6 +20,17 @@ public class MyMapTest {
   }
 
   @Test
+  public void isEmptyReturnsTrue(){
+    assertTrue(testMap.isEmpty());
+  }
+
+  @Test
+  public void isEmptyReturnsFalse(){
+    testMap.put("test", new Person("test"));
+    assertFalse(testMap.isEmpty());
+  }
+
+  @Test
   public void containsKeyReturnsFalse() {
     testMap.put("test", new Person("test"));
     assertFalse(testMap.containsKey("Test"));
@@ -32,10 +43,21 @@ public class MyMapTest {
   }
 
   @Test
-  public void getReturnsCorrectResult() {
+  public void getReturnsCorrectResultWithOneEntry() {
     Person value = new Person("test");
     String key = "test";
     testMap.put(key, value);
+    assertEquals(value, testMap.get(key));
+  }
+
+  @Test
+  public void getReturnsCorrectResultWithManyEntro() {
+    Person value = new Person("test");
+    String key = "test";
+    testMap.put(key, value);
+    for (int i = 0; i <= 5; i++) {
+      testMap.put("test"+i, new Person("test"));
+    }
     assertEquals(value, testMap.get(key));
   }
 

@@ -11,9 +11,13 @@ import datastructures.MyList;
 public class SurvivalMode {
 
     private Family family;
+    private Deque<Person> stack;
+    private int longest;
 
     public SurvivalMode(Family family) {
         this.family = family;
+        this.stack = new ArrayDeque<>();
+        this.longest = 0;
     }
 
     /**
@@ -21,17 +25,14 @@ public class SurvivalMode {
      * ja ilmoittaa, minkä kahden solmun välillä se on.
      */
     public void findBestMatch() {
-        //ArrayDeque<Person> topologicalOrder = topologicalSort(family);
-        //longestPath(family, topologicalOrder);
-
+        topologicalSort();
+        System.out.print(longestPath());
     }
 
     /**
      * Järjestää verkon topologiseen järjestykseen.
-     * @return verkon henkilöt listattuna topologisessa järjestyksessä
      */
-    public List<String> topologicalSort() {
-        ArrayDeque<Person> stack = new ArrayDeque<>();
+    public void topologicalSort() {
         Map<String, Boolean> visited = family.initializeVisitedMap();
 
         for (Person processed : family.getFamily()) {
@@ -39,19 +40,13 @@ public class SurvivalMode {
                 sortUtil(processed, visited, stack);
             }
         }
-
-        List<String> topo = new MyList();
-        while (!stack.isEmpty()) {
-            topo.add(stack.pop().getName());
-        }
-        return topo;
-
     }
+
     /**
      * Apumetodi topologiseen järjestämiseen.
      */
 
-    private void sortUtil(Person processed, Map<String, Boolean> visited, ArrayDeque<Person> stack) {
+    private void sortUtil(Person processed, Map<String, Boolean> visited, Deque<Person> stack) {
         visited.put(processed.getName(), true);
 
         processList(processed.getPartners(), visited, stack);
@@ -64,7 +59,7 @@ public class SurvivalMode {
     /**
      * Apumetodi topologiseen järjestämiseen.
      */
-    private void processList(List<Person> processedList, Map<String, Boolean> visited, ArrayDeque<Person> stack) {
+    private void processList(List<Person> processedList, Map<String, Boolean> visited, Deque<Person> stack) {
 
         for (Person person : processedList) {
             if (!visited.get(person.getName())) {
@@ -73,23 +68,47 @@ public class SurvivalMode {
         }
     }
 
+    private void processList(Person processed, List<Person> processedList, Map<Person, Integer> dist) {
+
+        for (Person person : processedList) {
+            int distance = dist.get(processed) + 1;
+            this.longest = distance > longest ? distance : longest;
+            if (dist.get(person) < distance) {
+                dist.put(person, distance);
+            }
+        }
+    }
+
     /**
      * Laskee pisimmän polun topologisesta järjestyksestä.
      */
-    private void longestPath(Family family, ArrayDeque<Person> topologicalOrder) {
-        //Map<String, Integer> distance = initializeDistanceMap(family);
+    private String longestPath() {
+        Map<Person, Integer> dist = initializedistMap();
 
+        Person processed = stack.pop();
+        dist.put(processed, 0);
+        while (!stack.isEmpty()) {
+
+            processList(processed, processed.getPartners(), dist);
+            processList(processed, processed.getParents(), dist);
+            processList(processed, processed.getChildren(), dist);
+
+            System.out.println(processed.getName() + " " + dist.get(processed));
+            processed = stack.pop();
+
+        }
+        return "Pisin polku " + this.longest;
     }
 
     /**
      * Initalisoi etäisyydet sisältävän mapin.
      */
-    private Map<String, Integer> initializeDistanceMap() {
-        Map<String, Integer> distance = new HashMap();
-        for (String name : family.getNames()) {
-            distance.put(name, Integer.MIN_VALUE);
+    private Map<Person, Integer> initializedistMap() {
+        Map<Person, Integer> dist = new HashMap();
+        for (Person person : family.getFamily()) {
+            dist.put(person, Integer.MIN_VALUE);
         }
-        return distance;
+        return dist;
     }
 
 }

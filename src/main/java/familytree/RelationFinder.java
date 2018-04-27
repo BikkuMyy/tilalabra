@@ -33,7 +33,7 @@ public class RelationFinder {
      */
     public boolean dfs(Person start, Person end) {
         String endName = end.getName();
-        ArrayDeque<Person> queue = new ArrayDeque<>();
+        Deque<Person> queue = new ArrayDeque<>();
         Person processed = start;
         queue.add(start);
 
@@ -58,7 +58,7 @@ public class RelationFinder {
      * @param endName       haettava henkilö
      * @return boolean
      */
-    private boolean dfsVisit(ArrayDeque<Person> queue, List<Person> processedList, String endName) {
+    private boolean dfsVisit(Deque<Person> queue, List<Person> processedList, String endName) {
         if (!processedList.isEmpty()) {
             for (Person next : processedList) {
                 String nextName = next.getName();
