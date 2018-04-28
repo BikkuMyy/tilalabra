@@ -2,7 +2,7 @@
 
 ### Ohjelman yleisrakenne
 
-Ohjelma koostuu Familytree-tietorakenteesta, sitä käyttävistä toiminnallisuuksista ja käyttöliittymästä. Rakennetta havainnollistaa oheinen luokkakaavio:
+Ohjelma koostuu Familytree-tietorakenteesta, sitä käyttävistä toiminnallisuuksista ja käyttöliittymästä. Luokat käyttävät itse toteutettuja tietorakenteita (datastructures). Rakennetta havainnollistaa oheinen luokkakaavio:
 
 ![Luokkakaavio](/dokumentaatio/tiralabra.png)
 

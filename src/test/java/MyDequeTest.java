@@ -54,9 +54,17 @@ public class MyDequeTest {
     }
 
     @Test
-    public void queueIsResized(){
+    public void queueIsResizedwithPush(){
       for (int i = 0; i <= 16; i++) {
         testDeque.push(new Person("test"));
+      }
+      assertTrue(testDeque.size() > 16);
+    }
+
+    @Test
+    public void queueIsResizedwithAdd(){
+      for (int i = 0; i <= 16; i++) {
+        testDeque.add(new Person("test"));
       }
       assertTrue(testDeque.size() > 16);
     }

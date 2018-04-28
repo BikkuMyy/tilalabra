@@ -84,7 +84,7 @@ public class SurvivalMode {
      * Laskee pisimmän polun topologisesta järjestyksestä.
      */
     private String longestPath() {
-        Map<Person, Integer> dist = initializedistMap();
+        Map<Person, Integer> dist = initializeDistMap();
 
         Person processed = stack.pop();
         dist.put(processed, 0);
@@ -104,7 +104,7 @@ public class SurvivalMode {
     /**
      * Initalisoi etäisyydet sisältävän mapin.
      */
-    private Map<Person, Integer> initializedistMap() {
+    private Map<Person, Integer> initializeDistMap() {
         Map<Person, Integer> dist = new MyMap();
         for (Person person : family.getFamily()) {
             dist.put(person, Integer.MIN_VALUE);

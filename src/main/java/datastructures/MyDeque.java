@@ -158,11 +158,6 @@ public class MyDeque<E> implements Deque<E> {
   }
 
   @Override
-  public E peek() {
-    return null;
-  }
-
-  @Override
   public E peekFirst() {
     return null;
   }
@@ -210,6 +205,11 @@ public class MyDeque<E> implements Deque<E> {
   @Override
   public boolean removeLastOccurrence(Object arg0) {
     return false;
+  }
+
+  @Override
+  public E peek() {
+    return null;
   }
 
 }
