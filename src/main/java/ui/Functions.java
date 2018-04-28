@@ -3,7 +3,7 @@ package ui;
 import java.util.*;
 import graph.*;
 import familytree.*;
-//import datastructures.MyMap;
+import datastructures.MyMap;
 
 public class Functions {
 
@@ -12,7 +12,7 @@ public class Functions {
     private IO io;
 
     public Functions(IO io, Family family) {
-        this.functions = new HashMap();
+        this.functions = new MyMap();
         populateFunctions();
         this.io = io;
         this.family = family;

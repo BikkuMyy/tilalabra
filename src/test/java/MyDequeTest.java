@@ -13,7 +13,16 @@ public class MyDequeTest {
         this.testDeque = new MyDeque();
     }
 
-    //tests for isEmpty
+    @Test
+    public void isEmptyReturnsTrue(){
+      assertTrue(testDeque.isEmpty());
+    }
+
+    @Test
+    public void isEmptyRetursFalse(){
+      testDeque.push(new Person("test"));
+      assertFalse(testDeque.isEmpty());
+    }
 
     @Test
     public void returnsCorrectSize(){
@@ -46,6 +55,9 @@ public class MyDequeTest {
 
     @Test
     public void queueIsResized(){
-
+      for (int i = 0; i <= 16; i++) {
+        testDeque.push(new Person("test"));
+      }
+      assertTrue(testDeque.size() > 16);
     }
   }

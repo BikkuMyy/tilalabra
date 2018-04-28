@@ -2,7 +2,7 @@ package familytree;
 
 import java.util.*;
 import graph.*;
-import datastructures.MyList;
+import datastructures.*;
 
 /**
  * Toteuttaa "survival moden" eli pisimmän polut etsinnän verkossa.
@@ -16,7 +16,7 @@ public class SurvivalMode {
 
     public SurvivalMode(Family family) {
         this.family = family;
-        this.stack = new ArrayDeque<>();
+        this.stack = new MyDeque<>();
         this.longest = 0;
     }
 
@@ -105,7 +105,7 @@ public class SurvivalMode {
      * Initalisoi etäisyydet sisältävän mapin.
      */
     private Map<Person, Integer> initializedistMap() {
-        Map<Person, Integer> dist = new HashMap();
+        Map<Person, Integer> dist = new MyMap();
         for (Person person : family.getFamily()) {
             dist.put(person, Integer.MIN_VALUE);
         }

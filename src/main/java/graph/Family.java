@@ -85,7 +85,7 @@ public class Family {
      * 
      */
     public Map<String, Boolean> initializeVisitedMap() {
-        Map<String, Boolean> visited = new HashMap();
+        Map<String, Boolean> visited = new MyMap();
         for (String name : getNames()) {
             visited.put(name, false);
         }

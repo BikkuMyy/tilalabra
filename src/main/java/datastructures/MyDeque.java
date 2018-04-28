@@ -76,12 +76,10 @@ public class MyDeque<E> implements Deque<E> {
 
   @Override
   public void addFirst(E e) {
-
   }
 
   @Override
   public void clear() {
-
   }
 
   @Override

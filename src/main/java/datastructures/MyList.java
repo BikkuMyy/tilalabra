@@ -74,11 +74,6 @@ public class MyList<E> implements List<E> {
         return new MyIterator();
     }
 
-    @Override
-    public ListIterator<E> listIterator() {
-        return new MyListIterator();
-    }
-
     private class MyIterator<E> implements Iterator<E> {
         int currentIndex;
 
@@ -97,57 +92,9 @@ public class MyList<E> implements List<E> {
 
     }
 
-    private class MyListIterator<E> extends MyIterator<E> implements ListIterator<E> {
-
-        MyListIterator() {
-            super();
-            currentIndex = 0;
-        }
-
-        @Override
-        public void add(E e) {
-        }
-
-        @Override
-        public boolean hasNext() {
-            return false;
-        }
-
-        @Override
-        public boolean hasPrevious() {
-            return currentIndex != 0;
-        }
-
-        @Override
-        public E next() {
-            return super.next();
-        }
-
-        @Override
-        public int nextIndex() {
-            return 0;
-        }
-
-        @Override
-        public E previous() {
-            return null;
-        }
-
-        @Override
-        public int previousIndex() {
-            return currentIndex - 1;
-        }
-
-        @Override
-        public void remove() {
-
-        }
-
-        @Override
-        public void set(E e) {
-
-        }
-
+    @Override
+    public ListIterator<E> listIterator() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

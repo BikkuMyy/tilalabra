@@ -2,6 +2,7 @@ package familytree;
 
 import java.util.*;
 import graph.*;
+import datastructures.MyDeque;
 
 /**
  * Sisältää toiminnallisuuden sukulaisuuksien määrittämiseen.
@@ -33,7 +34,7 @@ public class RelationFinder {
      */
     public boolean dfs(Person start, Person end) {
         String endName = end.getName();
-        Deque<Person> queue = new ArrayDeque<>();
+        Deque<Person> queue = new MyDeque<>();
         Person processed = start;
         queue.add(start);
 

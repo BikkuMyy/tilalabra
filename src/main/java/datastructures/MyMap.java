@@ -96,6 +96,16 @@ public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
     public V put(Object key, Object value) {
         int hash = hash(key);
         int i = indexFor(hash, entries.length);
+        for (Entry<K,V> e = entries[i]; e != null; e = e.next) {
+            Object k;
+            if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
+                V oldValue = e.value;
+                e.value = (V) value;
+                
+                return oldValue;
+            }
+        }
+
         Entry<K, V> e = entries[i];
         entries[i] = new Entry<>((K) key, (V) value, e, hash);
         if (++size > threshold) {
@@ -181,39 +191,12 @@ public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
     final class MyKeySet<K> extends AbstractSet<K> {
         public final int size()                 { return size; }
         public final Iterator<K> iterator()     { return new MyKeyIterator(); }
-
-        public final void forEach(Consumer<? super K> action) {
-            Entry<K, V>[] tab;
-            if (action == null)
-                throw new NullPointerException();
-            if (size > 0 && (tab = (Entry<K, V>[]) entries) != null) {
-
-                for (int i = 0; i < tab.length; ++i) {
-                    for (Entry<K,V> e = tab[i]; e != null; e = e.next)
-                        action.accept(e.key);
-                }
-              
-            }
-        }
     }
 
     final class MyValues extends AbstractCollection<V> {
         public final int size()                 { return size; }
         public final Iterator<V> iterator()     { return new MyValueIterator(); }
-        public final boolean contains(Object o) { return containsValue(o); }
-
-        public final void forEach(Consumer<? super V> action) {
-            Entry<K,V>[] tab;
-            if (action == null)
-                throw new NullPointerException();
-            if (size > 0 && (tab = entries) != null) {
-                for (int i = 0; i < tab.length; ++i) {
-                    for (Entry<K,V> e = tab[i]; e != null; e = e.next)
-                        action.accept(e.value);
-                }
-            }
-        }
-
+        //public final boolean contains(Object o) { return containsValue(o); }
     }
 
     private final class MyKeyIterator<K> extends MyHashIterator implements Iterator<K> {
@@ -287,27 +270,12 @@ public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
 
         @Override
         public V setValue(V value) {
-            V oldValue = this.value;
-            this.value = (V) value;
-            return oldValue;
+            throw new UnsupportedOperationException("Not supported yet.");
         }
 
         @Override
         public boolean equals(Object obj) {
-            if (obj == null) {
-                return false;
-            }
-            if (getClass() != obj.getClass()) {
-                return false;
-            }
-            final Entry<?, ?> other = (Entry<?, ?>) obj;
-            if (!Objects.equals(this.key, other.key)) {
-                return false;
-            }
-            if (!Objects.equals(this.value, other.value)) {
-                return false;
-            }
-            return true;
+            throw new UnsupportedOperationException("Not supported yet.");
         }
 
         public final int hashCode() {
