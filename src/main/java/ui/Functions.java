@@ -146,7 +146,7 @@ public class Functions {
      */
     public void survivalMode(){
         SurvivalMode survive = new SurvivalMode(this.family);
-        survive.findBestMatch();
+        this.io.print("Pisin polku: "+survive.findBestMatch());
     }
 
     public void printAll() {

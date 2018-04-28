@@ -21,13 +21,13 @@ public class SurvivalMode {
     }
 
     /**
-     * Etsii pisimmän polun verkossa 
-     * ja ilmoittaa, minkä kahden solmun välillä se on.
+     * Etsii pisimmän polun ja palauttaa sen.
+     * @return int pisin
      */
-    public void findBestMatch() {
+    public int findBestMatch() {
         topologicalSort();
-        System.out.print(longestPath());
-        //return result
+        longestPath();
+        return longest;
     }
 
     /**
@@ -69,6 +69,10 @@ public class SurvivalMode {
         }
     }
 
+    /**
+     * Apumetodi pisimmän polun määrittämiseen.
+     */
+        
     private void processList(Person processed, List<Person> processedList, Map<Person, Integer> dist) {
 
         for (Person person : processedList) {
@@ -83,7 +87,7 @@ public class SurvivalMode {
     /**
      * Laskee pisimmän polun topologisesta järjestyksestä.
      */
-    private String longestPath() {
+    private void longestPath() {
         Map<Person, Integer> dist = initializeDistMap();
 
         Person processed = stack.pop();
@@ -94,11 +98,9 @@ public class SurvivalMode {
             processList(processed, processed.getParents(), dist);
             processList(processed, processed.getChildren(), dist);
 
-            System.out.println(processed.getName() + " " + dist.get(processed));
+            System.out.println(processed.getName() + " - " + dist.get(processed));
             processed = stack.pop();
-
         }
-        return "Pisin polku " + this.longest;
     }
 
     /**

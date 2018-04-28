@@ -15,6 +15,11 @@ public class SurvivalModeTest {
         this.survive = new SurvivalMode(family);
     }
 
+    @Test
+    public void correctLongestPath(){
+        assertTrue(survive.findBestMatch() == 10);
+    }
+
     // @Test
     // public void correctTopologicalSort(){
     //     List<String> expected = Arrays.asList("Kristof", "Katja", "Marija", "Joze", "Ales", "Mari", "Jukka", "Saara", "Tiina", "Tuomas", "Janne", "Daniel", "Laura");
