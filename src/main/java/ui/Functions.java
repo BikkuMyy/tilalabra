@@ -2,8 +2,8 @@ package ui;
 
 import java.util.*;
 import graph.*;
-import familytree.RelationFinder;
-import familytree.SurvivalMode;
+import familytree.*;
+//import datastructures.MyMap;
 
 public class Functions {
 

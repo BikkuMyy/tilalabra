@@ -92,7 +92,9 @@ public class MyMapTest {
     for (int i = 0; i <= 5; i++) {
       testMap.put("test"+i, new Person("test"));
     }
+
     Set<String> keys = testMap.keySet();
+    assertEquals(6, keys.size());
     for (int i = 0; i <= 5; i++) {
       assertTrue(keys.contains("test"+i));
     }
@@ -106,8 +108,11 @@ public class MyMapTest {
       testMap.put(value, new Person(value));
       expected.add(value);
     }
+
+    assertEquals(6, testMap.values().size());
   
     for(Person person : testMap.values()){
+      assertFalse(person == null);
       assertTrue(expected.contains(person.getName()));
     }
   }

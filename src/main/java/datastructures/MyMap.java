@@ -2,23 +2,28 @@
 package datastructures;
 
 import java.util.*;
+import java.util.function.Consumer;
 
-public class MyMap<K, V> implements Map<K, V> {
+public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
 
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; //16
     static final int MAXIMUM_CAPACITY = 1 << 30;
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
-    //The next size value at which to resize (capacity * load factor).
+    //Threshold = next size value at which to resize (capacity * load factor).
     int threshold;
     final float loadFactor;
     transient Entry<K, V>[] entries;
     transient int size;
+    transient Set<K> keySet;
+    transient Collection<V> values;
 
     public MyMap() {
         this.loadFactor = DEFAULT_LOAD_FACTOR;
         threshold = (int) (DEFAULT_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR);
         entries = new Entry[DEFAULT_INITIAL_CAPACITY];
+        keySet = null;
+        values = null;
     }
 
     /**
@@ -89,83 +94,21 @@ public class MyMap<K, V> implements Map<K, V> {
 
     @Override
     public V put(Object key, Object value) {
-        int hash = hash(key.hashCode());
+        int hash = hash(key);
         int i = indexFor(hash, entries.length);
-        for (Entry<K, V> e = entries[i]; e != null; e = e.next) {
-            Object k;
-            if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
-                V oldValue = e.value;
-                e.value = (V) value;
-
-                return oldValue;
-            }
-        }
-
-        addEntry(hash, (K) key, (V) value, i);
-        return null;
-        //return putValue(hash(key), (K) key, (V) value);
-    }
-
-    private void addEntry(int hash, K key, V value, int bucketIndex) {
-        Entry<K, V> e = entries[bucketIndex];
-        entries[bucketIndex] = new Entry<>(key, value, e, hash);
+        Entry<K, V> e = entries[i];
+        entries[i] = new Entry<>((K) key, (V) value, e, hash);
         if (++size > threshold) {
             resize();
         }
+
+        return null;
     }
-
-    // final V putValue(int hash, K key, V value) {
-    //     Entry<K, V>[] table = entries;
-    //     Entry<K, V> toPut;
-    //     int n = table.length;
-    //     int i;
-
-    //     //jos avainta ei ole:
-    //     if ((toPut = table[i = (n - 1) & hash]) == null)
-    //         table[i] = new Entry(key, value, null, hash);
-    //     //muuten korvataan vanha
-    //     else {
-    //         Entry<K, V> e;
-    //         K k;
-
-    //         if (toPut.hash == hash && ((k = toPut.key) == key || (key != null && key.equals(k))))
-    //             e = toPut;
-    //         else {
-    //             for (int binCount = 0;; ++binCount) {
-    //                 if ((e = toPut.next) == null) {
-    //                     toPut.next = new Entry(key, value, null, hash);
-    //                     break;
-    //                 }
-    //                 if (e.hash == hash && ((k = e.key) == key || (key != null && key.equals(k)))){
-    //                     break;
-    //                 }
-    //                 toPut = e;
-    //             }
-    //         }
-    //         if (e != null) { // existing mapping for key
-    //             V oldValue = e.value;
-    //             return oldValue;
-    //         }
-    //     }
-
-    //     if (++size > threshold) {
-    //         resize();
-    //     }
-
-    //     return null;
-    // }
 
     private Entry<K, V>[] resize() {
         Entry<K, V>[] oldTable = entries;
         int oldCapacity = oldTable.length;
-        int oldThr = threshold;
         int newCapacity = oldCapacity << 1;
-        int newThr;
-
-        // if (oldCapacity >= MAXIMUM_CAPACITY) {
-        //     threshold = Integer.MAX_VALUE;
-        //     return oldTable;
-        // }
 
         Entry<K, V>[] newTable = new Entry[newCapacity];
         transfer(newTable);
@@ -212,19 +155,111 @@ public class MyMap<K, V> implements Map<K, V> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public Set<K> keySet() {
-        return new MyKeySet();
-    }
-
-    @Override
-    public Collection<V> values() {
-        return new MyValues();
-    }
-
-    @Override
+    
     public Set entrySet() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Set<K> keySet() {
+        Set<K> ks = keySet;
+        if (ks == null) {
+            ks = new MyKeySet();
+            keySet = ks;
+        }
+        return ks;
+    }
+
+    public Collection<V> values() {
+        Collection<V> vs = values;
+        if (vs == null) {
+            vs = new MyValues();
+            values = vs;
+        }
+        return vs;
+    }
+
+    final class MyKeySet<K> extends AbstractSet<K> {
+        public final int size()                 { return size; }
+        public final Iterator<K> iterator()     { return new MyKeyIterator(); }
+
+        public final void forEach(Consumer<? super K> action) {
+            Entry<K, V>[] tab;
+            if (action == null)
+                throw new NullPointerException();
+            if (size > 0 && (tab = (Entry<K, V>[]) entries) != null) {
+
+                for (int i = 0; i < tab.length; ++i) {
+                    for (Entry<K,V> e = tab[i]; e != null; e = e.next)
+                        action.accept(e.key);
+                }
+              
+            }
+        }
+    }
+
+    final class MyValues extends AbstractCollection<V> {
+        public final int size()                 { return size; }
+        public final Iterator<V> iterator()     { return new MyValueIterator(); }
+        public final boolean contains(Object o) { return containsValue(o); }
+
+        public final void forEach(Consumer<? super V> action) {
+            Entry<K,V>[] tab;
+            if (action == null)
+                throw new NullPointerException();
+            if (size > 0 && (tab = entries) != null) {
+                for (int i = 0; i < tab.length; ++i) {
+                    for (Entry<K,V> e = tab[i]; e != null; e = e.next)
+                        action.accept(e.value);
+                }
+            }
+        }
+
+    }
+
+    private final class MyKeyIterator<K> extends MyHashIterator implements Iterator<K> {
+        public K next() {
+            return (K) nextEntry().getKey();
+        }
+    }
+
+    private final class MyValueIterator extends MyHashIterator implements Iterator<V> {
+        public V next() {
+            return nextEntry().getValue();
+        }
+    }
+
+    abstract class MyHashIterator {
+        Entry<K, V> next;
+        int index;
+
+        MyHashIterator() {
+            Entry<K,V>[] table = entries;
+            next = null;
+            index = 0;
+            if (table != null && size > 0) { // advance to first entry
+                do {} while (index < table.length && (next = table[index++]) == null);
+            }
+        }
+
+        public boolean hasNext() {
+            return next != null;
+        }
+
+        final Entry<K, V> nextEntry() {
+            Entry<K, V>[] table;
+            Entry<K, V> e = next;
+
+            if (e == null) {
+                throw new NoSuchElementException();
+            }
+
+            if ((next = e.next) == null && (table = entries) != null) {
+                do {
+                } while (index < table.length && (next = table[index++]) == null);
+            }
+
+            return e;
+        }
     }
 
     static class Entry<K, V> implements Map.Entry<K, V> {
@@ -278,78 +313,5 @@ public class MyMap<K, V> implements Map<K, V> {
         public final int hashCode() {
             return Objects.hashCode(key) ^ Objects.hashCode(value);
         }
-    }
-
-    private final class MyKeySet extends AbstractSet<K> {
-
-        @Override
-        public Iterator<K> iterator() {
-            return new MyKeyIterator();
-        }
-
-        @Override
-        public int size() {
-            return size;
-        }
-
-        public boolean contains(Object o) {
-            return containsKey(o);
-        }
-    }
-
-    final class MyValues extends AbstractCollection<V> {
-
-        @Override
-        public Iterator<V> iterator() {
-            return new MyValueIterator();
-        }
-
-        @Override
-        public int size() {
-            return size;
-        }
-
-        public boolean contains(Object o) {
-            return containsValue(o);
-        }
-
-    }
-
-    private final class MyKeyIterator extends MyHashIterator implements Iterator<K> {
-        public K next() {
-            return nextEntry().getKey();
-        }
-    }
-
-    private final class MyValueIterator extends MyHashIterator implements Iterator<V>{
-        public V next() {
-            return nextEntry().value;
-        }
-    }
-
-    abstract class MyHashIterator  {
-        Entry<K, V> next;
-        int index;
-        Entry<K, V> current;
-
-        public boolean hasNext() {
-            return next != null;
-        }
-
-        final Entry<K, V> nextEntry() {
-            
-            Entry<K, V> e = next;
-            if (e == null)
-                throw new NoSuchElementException();
-
-            if ((next = e.next) == null) {
-                Entry[] t = entries;
-                while (index < t.length && (next = t[index++]) == null)
-                    ;
-            }
-            current = e;
-            return e;
-        }
-
     }
 }

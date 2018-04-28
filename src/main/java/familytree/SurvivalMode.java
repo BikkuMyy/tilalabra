@@ -27,6 +27,7 @@ public class SurvivalMode {
     public void findBestMatch() {
         topologicalSort();
         System.out.print(longestPath());
+        //return result
     }
 
     /**

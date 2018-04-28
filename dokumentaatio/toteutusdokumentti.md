@@ -11,8 +11,9 @@ TODO:
 
 - Saavutetut aika- ja tilavaativuudet (m.m. O-analyysit pseudokoodista)
 
-- Työn mahdolliset puutteet ja parannusehdotukset
-
+### Puutteet ja parannusehdotukset
+- Ohjelman käyttöä helpottaisi, jos sukulaisuusverkon sisältämät henkilöt voidaan lukea esim. JSON-tiedostosta, jossa kullekin henkilölle on valmiiksi määriteltynä suhteet, ja tallentaa edelleen samassa muodossa.
+- Lasten ja vanhempien väliset suhteet voitaisiin hoitaa suoraan pointtereita käyttämällä listojen sijaan.
 
 ### Lähteet
 - [Tietorakenne](https://youtu.be/gQ3iqBh69fU?t=240)

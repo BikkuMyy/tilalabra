@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.*;
+import datastructures.MyMap;
 
 /**
  * Luokka on vastuussa kaikkien sukulaisuusverkkoon lisättyjen henkilöiden
@@ -11,7 +12,7 @@ public class Family {
     private Map<String, Person> family;
 
     public Family() {
-        this.family = new HashMap<>();
+        this.family = new MyMap<>();
     }
 
     public Collection<Person> getFamily() {
@@ -100,7 +101,11 @@ public class Family {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Person person : this.family.values()) {
+
+        // for (String key : family.keySet()){
+        //     sb.append(key + "\n");
+        // }
+        for (Person person : this.family.values()) {       
             sb.append(person.toString() + "\n");
         }
 
