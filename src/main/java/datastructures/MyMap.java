@@ -2,11 +2,10 @@
 package datastructures;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
 
-    static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; //16
+    static final int DEFAULT_INITIAL_CAPACITY = 16;
     static final int MAXIMUM_CAPACITY = 1 << 30;
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
@@ -196,7 +195,6 @@ public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
     final class MyValues extends AbstractCollection<V> {
         public final int size()                 { return size; }
         public final Iterator<V> iterator()     { return new MyValueIterator(); }
-        //public final boolean contains(Object o) { return containsValue(o); }
     }
 
     private final class MyKeyIterator<K> extends MyHashIterator implements Iterator<K> {

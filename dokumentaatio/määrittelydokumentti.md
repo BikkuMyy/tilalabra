@@ -2,10 +2,20 @@
 
 Sukulaisuusverkko -tietorakenne ja eri algoritmien soveltaminen verkon ominaisuuksien selvittämiseen.
 
-Sukulaisuusverkon solmut ovat "Henkilö"-olioita, joihin liittyy kenttä Nimi ja kaaria sisältävät taulukot "Kumppanit" ja "Lapset". Taulukot sisältävät viitteet kaikkiin "Kumppani"- tai "Henkilö"-olioihin, joihin kyseisellä henkilöllä on suhde. Kumppani-olio sisältää niin ikään taulukon, jossa on viite suhteen kumpaankin osapuoleen. Verkko on suunnattu ja se voi sisältää syklejä.
+### Tietorakenne
+Sukulaisuusverkon solmut ovat "Henkilö"-olioita, joihin liittyy kenttä "Nimi" ja kaaria edustavat "Kumppanit"-, "Lapset"- ja "Vanhemmat"-listat. Samalla nimellä voi esiintyä vain yksi henkilö, eli täyskaimojen lisääminen ei ole mahdollista. Listat sisältävät viitteet kaikkiin "Suhde"-oliohin, joihin henkilö liityy tai "Henkilö"-olioihin, joihin kyseisellä henkilöllä on suhde. "Suhde"-olio sisältää taulukon, jossa on viite suhteen kumpaankin osapuoleen. Verkko on suunnattu ja se voi sisältää syklejä.
 
-Kun syötteeksi annetaan kaksi henkilöä, voidaan selvittää, ovatko he sukua toisilleen, ja kuinka läheisesti. Lisäksi voidaan selvittää, ovatko saman suvun eri haarojen kaksi jälkeläistä kumppaneita ja kuinka kaukainen heidän lähin yhteinen sukulaisensa on. 
+### Toiminnot
+Ohjelmaa voidaan käyttää yksinkertaisen tekstikäyttöliittymän avulla. Mahdolliset toiminnot:
+- Etsi: etsi verkosta henkilöä nimen perusteella (nimen täytyy olla tarkka)
+- Kaikki: tulosta kaikki verkon henkilöt ja niiden tiedot
+- Lisää: lisää henkilö verkkoon
+- Sukulaisuus: määritä ovatko kaksi henkilöä sukua toisilleen
+- Survive: määritä verkon henkilöiden väliset etäisyydet ja siten verkon pisin polku 
+- Suhde: lisää Kumppanuus tai Vanhempi-Lapsi -suhde kahden henkilön välille
+- Lopeta
 
-Koska kyseessä on suunnattu verkko, polunetsintään kahden solmun välillä (ensimmäinen käyttötapaus) voidaan käyttää leveys- tai syvyyssuuntaista hakua ja syklittömyyden tarkistukseen (toinen käyttötapaus) syvyyssuuntaista hakua. Sekä leveys- että syvyyssuuntaisen haun aikavaativuus on O(V+E) ja tilavaativuus O(V), joissa V on solmujen ja E kaarien määrä.
-
+### Tavoitellut aikavaativuudet
+Koska kyseessä on suunnattu verkko, polunetsintään kahden solmun välillä käytetään syvyyssuuntaista hakua. Pisimmän polun määrittämiseen käytetään topologista järjestämistä, jonka perusteella etäisyydet määritetään.
+Sekä syvyyshaun että topologisen järjestämisen aikavaativuus on O(V+E) ja tilavaativuus O(V), joissa V on solmujen ja E kaarien määrä.
 

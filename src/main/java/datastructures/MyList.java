@@ -37,10 +37,18 @@ public class MyList<E> implements List<E> {
     @Override
     public boolean add(Object o) {
         if (size + 1 >= elements.length) {
-            this.elements = Arrays.copyOf(elements, size * 2);
+            this.elements = resize(elements, size * 2);
         }
         elements[size++] = o;
         return true;
+    }
+
+    private Object[] resize(Object[] old, int newSize) {
+        Object[] newArray = new Object[newSize];
+        for (int i = 0; i < old.length; i++) {
+            newArray[i] = old[i];
+        }
+        return newArray;
     }
 
     @Override

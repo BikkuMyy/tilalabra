@@ -15,8 +15,17 @@ public class Family {
         this.family = new MyMap<>();
     }
 
+    /**
+     * Palauttaa Family-olion sisältämän HashMapin arvot 
+     * eli sukulaisuusverkkoon lisätyt Person-oliot.
+     * @return Collection<Person> perheenjäsenet
+     */
     public Collection<Person> getFamily() {
         return this.family.values();
+    }
+
+    public Map<String, Person> getFamilyMap(){
+        return this.family;
     }
 
     public Set<String> getNames() {
@@ -39,6 +48,12 @@ public class Family {
         }
     }
 
+    /**
+     * Etsii henkilön sukulaisuusverkosta nimen perusteella.
+     * 
+     * @param name
+     * @return Person löydetty henkilö
+     */
     public Person findPerson(String name) {
         if (this.family.containsKey(name)) {
             return this.family.get(name);
@@ -101,12 +116,8 @@ public class Family {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-
-        // for (String key : family.keySet()){
-        //     sb.append(key + "\n");
-        // }
         for (Person person : this.family.values()) {       
-            sb.append(person.toString() + "\n");
+            sb.append(person + "\n");
         }
 
         return sb.toString();

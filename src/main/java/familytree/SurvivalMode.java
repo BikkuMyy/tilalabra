@@ -5,8 +5,7 @@ import graph.*;
 import datastructures.*;
 
 /**
- * Toteuttaa "survival moden" eli pisimmän polut etsinnän verkossa.
- * WIP
+ * Etsii verkon pisimmän polun.
  */
 public class SurvivalMode {
 

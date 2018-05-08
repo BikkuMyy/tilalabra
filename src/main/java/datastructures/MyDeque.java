@@ -3,10 +3,9 @@ package datastructures;
 import java.util.*;
 
 public class MyDeque<E> implements Deque<E> {
-  transient Object[] queue;
-  transient int head;
-  transient int tail;
-  private static final int MIN_INITIAL_CAPACITY = 8;
+  private Object[] queue;
+  private int head;
+  private int tail;
 
   public MyDeque() {
     queue = new Object[16];
@@ -61,12 +60,18 @@ public class MyDeque<E> implements Deque<E> {
     int newCapacity = n << 1;
 
     Object[] newqueue = new Object[newCapacity];
-    System.arraycopy(queue, p, newqueue, 0, r);
-    System.arraycopy(queue, 0, newqueue, r, p);
+    copyArray(queue, p, newqueue, 0, r);
+    copyArray(queue, 0, newqueue, r, p);
 
-    queue = (E[]) newqueue;
+    queue = newqueue;
     head = 0;
     tail = n;
+  }
+
+  private void copyArray(Object[] oldArray, int oldStart, Object[] newArray, int newStart, int lenght){
+    for (int i = oldStart; i < oldStart+lenght; i++) {
+      newArray[newStart++] = oldArray[i];
+    }
   }
 
   @Override

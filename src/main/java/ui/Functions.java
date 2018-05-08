@@ -142,11 +142,13 @@ public class Functions {
     }
 
     /**
-     * Selvittää verkon kauimmaista sukua olevat.
+     * Selvittää verkon kauimmaista sukua olevat eli pisimmän polun.
      */
     public void survivalMode(){
         SurvivalMode survive = new SurvivalMode(this.family);
-        this.io.print("Pisin polku: "+survive.findBestMatch());
+        this.io.println("Henkilö - Etäisyys ensimmäisestä");
+        this.io.println("_________________");
+        survive.findBestMatch();
     }
 
     public void printAll() {
@@ -201,6 +203,7 @@ public class Functions {
         for (String key : this.functions.keySet()) {
             sb.append("    " + key + "\n");
         }
+        sb.append("    Lopeta\n");
         return sb.toString();
     }
 }
