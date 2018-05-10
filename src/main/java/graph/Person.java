@@ -23,7 +23,7 @@ public class Person {
     /**
      * Luo uuden kumppanuuden parametrina annettuun henkilöön.
      *
-     * @param person
+     * @param   person    kumppani
      */
     public void addRelation(Person person) {
         this.relations.add(new Relation(this, person));
@@ -32,7 +32,7 @@ public class Person {
     /**
      * Lisää parametrina annetun henkilön kyseisen henkilön lapseksi.
      *
-     * @param person
+     * @param   person  lapsi
      */
     public void addChild(Person person) {
         this.children.add(person);
@@ -41,7 +41,7 @@ public class Person {
     /**
      * Lisää parametrina annetun henkilön kyseisen henkilön vanhemmaksi.
      *
-     * @param person
+     * @param   person    vanhempi
      */
     public void addParent(Person person) {
         this.parents.add(person);

@@ -5,8 +5,7 @@ import java.util.*;
 /**
  * Luokka korvaa valmiin ArrayList-tietorakenteen.
  *
- * @author mari
- * @param <E>
+ * @param <E>   listan sisältämien olioiden tyyppi
  */
 public class MyList<E> implements List<E> {
 

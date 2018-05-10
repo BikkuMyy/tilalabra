@@ -15,6 +15,7 @@ public class Relation {
 
     /**
     * Palauttaa kumppanuuden toisen osapuolen.
+    * @return Person kumppani
     */
     public Person getPartner() {
         return this.partners[1];

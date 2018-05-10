@@ -23,7 +23,8 @@ public class Functions {
 
     /**
      * Toteuttaa parametrina saamansa funktion.
-     * @param   function
+     * @param   function    suoritettava toiminto
+     * @return  boolean
      */
     public boolean implementFunction(String function) {
         if (this.functions.containsKey(function)) {
@@ -172,7 +173,7 @@ public class Functions {
     /**
      * Apumetodi, joka palauttaa käyttäjältä kysytyn syötteen.
      *
-     * @param text
+     * @param   text   käyttäjän antama syöte   
      * @return nextLine
      */
     public String askUserFor(String text) {

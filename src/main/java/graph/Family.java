@@ -19,7 +19,7 @@ public class Family {
      * Palauttaa Family-olion sisältämän HashMapin arvot 
      * eli sukulaisuusverkkoon lisätyt Person-oliot.
      * 
-     * @return Collection<Person> perheenjäsenet
+     * @return Collection   perheenjäsenet
      */
     public Collection<Person> getFamily() {
         return this.family.values();
@@ -36,7 +36,7 @@ public class Family {
     /**
      * Lisää parametrina saamansa henkilön sukulaisuusverkkoon.
      *
-     * @param person
+     * @param   person  lisättävä henkilö
      * @return boolean
      */
     public boolean addPerson(Person person) {
@@ -52,7 +52,7 @@ public class Family {
     /**
      * Etsii henkilön sukulaisuusverkosta nimen perusteella.
      * 
-     * @param name
+     * @param name  haettavan henkilön nimi
      * @return Person löydetty henkilö
      */
     public Person findPerson(String name) {
@@ -65,8 +65,8 @@ public class Family {
     /**
      * Lisää kumppanuuden kahden parametrina saamansa henkilön välille.
      *
-     * @param p1
-     * @param p2
+     * @param   p1    ensimmäinen henkilö
+     * @param   p2    toinen henkilö
      */
     public void addRelation(Person p1, Person p2) {
         p1.addRelation(p2);
@@ -77,8 +77,8 @@ public class Family {
      * Lisää toisena parametrina saamansa henkilön ensimmäisenä saamansa
      * parametrin lapseksi ja päinvastoin.
      *
-     * @param parent
-     * @param child
+     * @param   parent    vanhempi
+     * @param   child     lapsi
      */
     public void addParentChild(Person parent, Person child) {
         parent.addChild(child);
@@ -89,8 +89,8 @@ public class Family {
      * Palauttaa totuusarvon sen perusteella, löytyykö parametrina
      * annettua henkilöä verkosta.
      *
-     * @param person
-     * @return boolean
+     * @param   person    haettava henkilö
+     * @return  boolean
      */
     public boolean containsPerson(String person) {
         return this.family.containsKey(person);
