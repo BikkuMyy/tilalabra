@@ -1,7 +1,7 @@
 package graph;
 
 /**
-* Luokka edustaa kahden henkilön välisiä kumppanuuksia.
+* Edustaa kahden henkilön välisiä kumppanuuksia.
 */
 public class Relation {
 
@@ -14,7 +14,7 @@ public class Relation {
     }
 
     /**
-    * Metodi palauttaa kumppanuuden toisen osapuolen.
+    * Palauttaa kumppanuuden toisen osapuolen.
     */
     public Person getPartner() {
         return this.partners[1];

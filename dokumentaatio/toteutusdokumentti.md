@@ -8,7 +8,7 @@ Ohjelma koostuu Familytree-tietorakenteesta (graph) ja sitä käyttävistä toim
 
 ### Saavutetut aika- ja tilavaativuudet
 
-Syvyyshaun ja topologisen järjestämisen toteutuneet aikavaativuudet todennettiin kokeellisesti (ks [Testausdokumentti](/dokumentaatio/testausdokumentti.md)). Kuten alla olevista kuvaajista nähdään, verkon koon kasvaessa lineaarisesti myös suoritusaika kasvaa suhteellisen lineaarisesti.
+Syvyyshaun ja topologisen järjestämisen toteutuneet aikavaativuudet todennettiin kokeellisesti erilaisilla verkoilla (ks. [Testausdokumentti](/dokumentaatio/testausdokumentti.md)). Kuten alla olevista kuvaajista nähdään, verkon koon kasvaessa lineaarisesti myös suoritusaika kasvaa lineaarisesti.
 
 ![DFS](/dokumentaatio/dfs_performance.png)
 

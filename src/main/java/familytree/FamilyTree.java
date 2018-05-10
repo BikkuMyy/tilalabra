@@ -1,8 +1,10 @@
 package familytree;
 
 import graph.*;
-import java.util.*;
 
+/**
+ * Luo Family-olion ja syöttää esimerkkidsatan.
+ */
 public class FamilyTree {
 
     /**

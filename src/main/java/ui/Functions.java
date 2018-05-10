@@ -5,6 +5,9 @@ import graph.*;
 import familytree.*;
 import datastructures.MyMap;
 
+/**
+ * Sisältää ohjelman tarjoamat toiminnot.
+ */
 public class Functions {
 
     private Map<String, Function> functions;
@@ -137,7 +140,7 @@ public class Functions {
         if (finder.areRelated(p1, p2)) {
             this.io.print(p1.getName() + " ja " + p2.getName() + " ovat sukua.");
         } else {
-            this.io.print("Henkilöt eivät ole sukua.");
+            this.io.println("Henkilöt eivät ole sukua.");
         }
     }
 
@@ -151,6 +154,17 @@ public class Functions {
         survive.findLongestPath();
     }
 
+    /**
+     * Alustaa tyhjän Family-olion varmistuksen jälkeen.
+     */
+    public void emptyFamily(){
+        if(askUserFor("Haluatko varmasti tyhjentää sukulaisuusverkon - Kyllä/Ei?").equals("Kyllä")){
+            this.family = new Family();
+        } else {
+            this.io.print("Tyhjennys peruttu.");
+        }
+    }
+
     public void printAll() {
         this.io.println(family.toString());
     }
@@ -162,7 +176,7 @@ public class Functions {
      * @return nextLine
      */
     public String askUserFor(String text) {
-        this.io.print(text);
+        this.io.println(text);
         return this.io.nextLine();
     }
 
@@ -193,6 +207,10 @@ public class Functions {
 
         functions.put("Survive", (Function) () -> {
             survivalMode();
+        });
+
+        functions.put("Tyhjennä", (Function) () -> {
+            emptyFamily();
         });
     }
 

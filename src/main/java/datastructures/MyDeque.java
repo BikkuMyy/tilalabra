@@ -24,7 +24,7 @@ public class MyDeque<E> implements Deque<E> {
     }
   }
 
-  //pollFirst
+  // pollFirst
   @Override
   public E pop() {
     int h = head;
@@ -68,8 +68,8 @@ public class MyDeque<E> implements Deque<E> {
     tail = n;
   }
 
-  private void copyArray(Object[] oldArray, int oldStart, Object[] newArray, int newStart, int lenght){
-    for (int i = oldStart; i < oldStart+lenght; i++) {
+  private void copyArray(Object[] oldArray, int oldStart, Object[] newArray, int newStart, int lenght) {
+    for (int i = oldStart; i < oldStart + lenght; i++) {
       newArray[newStart++] = oldArray[i];
     }
   }

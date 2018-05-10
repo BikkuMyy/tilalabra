@@ -2,6 +2,9 @@ package ui;
 
 import java.util.Scanner;
 
+/**
+ * Vastaa ohjelman I/O:sta.
+ */
 public class ConsoleIO implements IO {
 
     private Scanner scanner;

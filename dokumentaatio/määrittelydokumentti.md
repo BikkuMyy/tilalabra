@@ -7,6 +7,7 @@ Sukulaisuusverkon solmut ovat "Henkilö"-olioita, joihin liittyy kenttä "Nimi" 
 
 ### Toiminnot
 Ohjelmaa voidaan käyttää yksinkertaisen tekstikäyttöliittymän avulla. Mahdolliset toiminnot:
+- Tyhjennä: tyhjentää koko verkon
 - Etsi: etsi verkosta henkilöä nimen perusteella (nimen täytyy olla tarkka)
 - Kaikki: tulosta kaikki verkon henkilöt ja niiden tiedot
 - Lisää: lisää henkilö verkkoon

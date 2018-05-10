@@ -4,7 +4,7 @@ import datastructures.MyList;
 import java.util.*;
 
 /**
- * Luokka edustaa sukulaisuusverkon solmuja eli henkilöitä.
+ * Edustaa sukulaisuusverkon solmuja eli henkilöitä.
  */
 public class Person {
 
@@ -21,7 +21,7 @@ public class Person {
     }
 
     /**
-     * Metodi luo uuden kumppanuuden parametrina annettuun henkilöön.
+     * Luo uuden kumppanuuden parametrina annettuun henkilöön.
      *
      * @param person
      */
@@ -30,7 +30,7 @@ public class Person {
     }
 
     /**
-     * Metodi lisää parametrina annetun henkilön kyseisen henkilön lapseksi.
+     * Lisää parametrina annetun henkilön kyseisen henkilön lapseksi.
      *
      * @param person
      */
@@ -39,7 +39,7 @@ public class Person {
     }
 
     /**
-     * Metodi lisää parametrina annetun henkilön kyseisen henkilön vanhemmaksi.
+     * Lisää parametrina annetun henkilön kyseisen henkilön vanhemmaksi.
      *
      * @param person
      */
@@ -52,7 +52,7 @@ public class Person {
     }
 
     /**
-     * Metodi palauttaa listan kyseisen henkilön kumppaneista.
+     * Palauttaa listan kyseisen henkilön kumppaneista.
      *
      * @return partners
      */

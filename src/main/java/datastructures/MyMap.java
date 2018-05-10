@@ -3,13 +3,13 @@ package datastructures;
 
 import java.util.*;
 
-public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
+public class MyMap<K, V> extends AbstractMap<K, V> implements Map<K, V> {
 
     static final int DEFAULT_INITIAL_CAPACITY = 16;
     static final int MAXIMUM_CAPACITY = 1 << 30;
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
-    //Threshold = next size value at which to resize (capacity * load factor).
+    // Threshold = next size value at which to resize (capacity * load factor).
     int threshold;
     final float loadFactor;
     transient Entry<K, V>[] entries;
@@ -27,7 +27,8 @@ public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
 
     /**
      * Hash implementation from Java 8
-     * @param   key
+     * 
+     * @param key
      */
     static final int hash(Object key) {
         int h;
@@ -73,7 +74,7 @@ public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
         Entry e;
         K k;
 
-        //check first node
+        // check first node
         if ((table = entries) != null && (n = table.length) > 0 && (first = table[(n - 1) & hash]) != null) {
 
             if (first.hash == hash && ((k = first.key) == key || (key != null && key.equals(k)))) {
@@ -95,12 +96,12 @@ public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
     public V put(Object key, Object value) {
         int hash = hash(key);
         int i = indexFor(hash, entries.length);
-        for (Entry<K,V> e = entries[i]; e != null; e = e.next) {
+        for (Entry<K, V> e = entries[i]; e != null; e = e.next) {
             Object k;
             if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
                 V oldValue = e.value;
                 e.value = (V) value;
-                
+
                 return oldValue;
             }
         }
@@ -164,7 +165,6 @@ public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    
     public Set entrySet() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -188,13 +188,23 @@ public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
     }
 
     final class MyKeySet<K> extends AbstractSet<K> {
-        public final int size()                 { return size; }
-        public final Iterator<K> iterator()     { return new MyKeyIterator(); }
+        public final int size() {
+            return size;
+        }
+
+        public final Iterator<K> iterator() {
+            return new MyKeyIterator();
+        }
     }
 
     final class MyValues extends AbstractCollection<V> {
-        public final int size()                 { return size; }
-        public final Iterator<V> iterator()     { return new MyValueIterator(); }
+        public final int size() {
+            return size;
+        }
+
+        public final Iterator<V> iterator() {
+            return new MyValueIterator();
+        }
     }
 
     private final class MyKeyIterator<K> extends MyHashIterator implements Iterator<K> {
@@ -214,11 +224,12 @@ public class MyMap<K, V> extends AbstractMap<K,V> implements Map<K, V> {
         int index;
 
         MyHashIterator() {
-            Entry<K,V>[] table = entries;
+            Entry<K, V>[] table = entries;
             next = null;
             index = 0;
             if (table != null && size > 0) { // advance to first entry
-                do {} while (index < table.length && (next = table[index++]) == null);
+                do {
+                } while (index < table.length && (next = table[index++]) == null);
             }
         }
 

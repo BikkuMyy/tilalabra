@@ -4,7 +4,7 @@ import java.util.*;
 import datastructures.MyMap;
 
 /**
- * Luokka on vastuussa kaikkien sukulaisuusverkkoon lisättyjen henkilöiden
+ * Vastaa kaikkien sukulaisuusverkkoon lisättyjen henkilöiden
  * säilyttämisestä ja hallinnasta.
  */
 public class Family {
@@ -18,6 +18,7 @@ public class Family {
     /**
      * Palauttaa Family-olion sisältämän HashMapin arvot 
      * eli sukulaisuusverkkoon lisätyt Person-oliot.
+     * 
      * @return Collection<Person> perheenjäsenet
      */
     public Collection<Person> getFamily() {
@@ -33,7 +34,7 @@ public class Family {
     }
 
     /**
-     * Metodi lisää parametrina saamansa henkilön sukulaisuusverkkoon.
+     * Lisää parametrina saamansa henkilön sukulaisuusverkkoon.
      *
      * @param person
      * @return boolean
@@ -62,7 +63,7 @@ public class Family {
     }
 
     /**
-     * Metodi lisää kumppanuuden kahden parametrina saamansa henkilön välille.
+     * Lisää kumppanuuden kahden parametrina saamansa henkilön välille.
      *
      * @param p1
      * @param p2
@@ -73,7 +74,7 @@ public class Family {
     }
 
     /**
-     * Metodi lisää toisena parametrina saamansa henkilön ensimmäisenä saamansa
+     * Lisää toisena parametrina saamansa henkilön ensimmäisenä saamansa
      * parametrin lapseksi ja päinvastoin.
      *
      * @param parent
@@ -85,7 +86,7 @@ public class Family {
     }
 
     /**
-     * Metodi palauttaa totuusarvon sen perusteella, löytyykö parametrina
+     * Palauttaa totuusarvon sen perusteella, löytyykö parametrina
      * annettua henkilöä verkosta.
      *
      * @param person
@@ -96,8 +97,8 @@ public class Family {
     }
 
     /**
-     * Apumetodi, joka populoi visited-listan.
-     * 
+     * Populoi visited-mapin.
+     * @return visited
      */
     public Map<String, Boolean> initializeVisitedMap() {
         Map<String, Boolean> visited = new MyMap();
@@ -107,12 +108,6 @@ public class Family {
         return visited;
     }
 
-    /**
-     * Metodi palauttaa kaikkien sukulaisuusverkon sisältämien henkilöiden
-     * tiedot merkkijonona.
-     *
-     * @return String
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

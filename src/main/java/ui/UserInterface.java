@@ -3,7 +3,7 @@ package ui;
 import graph.*;
 
 /**
-* Luokka vastaa käyttöliittymän toiminnasta.
+* Vastaa käyttöliittymän toiminnasta.
 */
 public class UserInterface {
 
@@ -16,7 +16,7 @@ public class UserInterface {
     }
 
     /**
-    * Metodi käynnistää käyttöliittymän.
+    * Käynnistää käyttöliittymän.
     */
     public void start(){
         this.io.println("Tervetuloa käyttämään sukulaisuusverkkoa!\n");
@@ -25,7 +25,7 @@ public class UserInterface {
     }
 
     /**
-    * Metodi vastaa käyttöliittymän suorittamisesta.
+    * Vastaa käyttöliittymän suorittamisesta.
     */
     public void run(){
         this.io.print("?  ");

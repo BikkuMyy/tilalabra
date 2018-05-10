@@ -3,6 +3,9 @@ package familytree;
 import graph.*;
 import java.util.*;
 
+/**
+ * Apuluokka suorituskykytestausta varten.
+ */
 public class PerformanceTest {
 
   private void printResults(Map<String, List<Long>> data) {
@@ -103,57 +106,6 @@ public class PerformanceTest {
       family.addParentChild(p2, child);
     }
     addLevel(n, k, family, child);
-  }
-
-  private boolean hasCycle(Family family) {
-    Map<Person, String> colors = new HashMap();
-
-    for (Person person : family.getFamily()) {
-      colors.put(person, "white");
-    }
-
-    for (Person processed : family.getFamily()) {
-      if (colors.get(processed).equals("white")) {
-        if (search(processed, colors)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  private boolean search(Person processed, Map<Person, String> colors) {
-    colors.put(processed, "gray");
-    if (processColorList(processed, processed.getPartners(), colors)){
-    return true;
-    }
-    if (processColorList(processed, processed.getParents(), colors)) {
-      return true;
-    }
-    if (processColorList(processed, processed.getChildren(), colors)) {
-      return true;
-    }
-    return false;
-  }
-
-  /**
-   * Apumetodi syklittömyyden tarkastamiseenn.
-   */
-  private boolean processColorList(Person processed, List<Person> processedList, Map<Person, String> colors) {
-
-    for (Person person : processedList) {
-      String color = colors.get(person);
-      if (color.equals("gray")) {
-        return true;
-      }
-      if (color.equals("white")) {
-        if (search(person, colors)) {
-          return true;
-        }
-      }
-    }
-    colors.put(processed, "black");
-    return false;
   }
 
 }
