@@ -148,7 +148,7 @@ public class Functions {
         SurvivalMode survive = new SurvivalMode(this.family);
         this.io.println("Henkilö - Etäisyys ensimmäisestä");
         this.io.println("_________________");
-        survive.findBestMatch();
+        survive.findLongestPath();
     }
 
     public void printAll() {

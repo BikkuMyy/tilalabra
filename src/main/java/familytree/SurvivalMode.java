@@ -23,7 +23,7 @@ public class SurvivalMode {
      * Etsii pisimmän polun ja palauttaa sen.
      * @return int pisin
      */
-    public int findBestMatch() {
+    public int findLongestPath() {
         topologicalSort();
         longestPath();
         return longest;
@@ -70,8 +70,7 @@ public class SurvivalMode {
 
     /**
      * Apumetodi pisimmän polun määrittämiseen.
-     */
-        
+     */ 
     private void processList(Person processed, List<Person> processedList, Map<Person, Integer> dist) {
 
         for (Person person : processedList) {

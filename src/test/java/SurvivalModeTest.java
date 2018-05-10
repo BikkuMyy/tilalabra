@@ -17,7 +17,7 @@ public class SurvivalModeTest {
 
     @Test
     public void correctLongestPath(){
-        assertTrue(survive.findBestMatch() == 10);
+        assertTrue(survive.findLongestPath() == 10);
     }
 
     // @Test

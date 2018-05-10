@@ -6,15 +6,20 @@ Ohjelma koostuu Familytree-tietorakenteesta (graph) ja sitä käyttävistä toim
 
 ![Luokkakaavio](/dokumentaatio/tiralabra.png)
 
+### Saavutetut aika- ja tilavaativuudet
 
-### Saavutetut aika- ja tilavaativuudet TODO
-(m.m. O-analyysit pseudokoodista)
+Syvyyshaun ja topologisen järjestämisen toteutuneet aikavaativuudet todennettiin kokeellisesti (ks [Testausdokumentti](/dokumentaatio/testausdokumentti.md)). Kuten alla olevista kuvaajista nähdään, verkon koon kasvaessa lineaarisesti myös suoritusaika kasvaa suhteellisen lineaarisesti.
+
+![DFS](/dokumentaatio/dfs_performance.png)
+
+![Topologinen järjestäminen](/dokumentaatio/topo_performance.png)
 
 ### Puutteet ja parannusehdotukset
 - Ohjelman käyttöä helpottaisi, jos sukulaisuusverkon sisältämät henkilöt voidaan lukea esim. JSON-tiedostosta, jossa kullekin henkilölle on valmiiksi määriteltynä suhteet, ja tallentaa edelleen samassa muodossa.
 - Lasten ja vanhempien väliset suhteet voitaisiin hoitaa suoraan pointtereita käyttämällä kaksinkertaisten listojen sijaan.
 - Henkilöiden yksilöinti muuten kuin vain nimen perusteella, jolloin täyskaimojen lisääminen on mahdollista, mutta samalla nimen perusteella tapahtuvien toiminnallisuuksien säilyttäminen
 - Omien tietorakenteiden toteutusta voisi yksinkertaistaa ja optimoida.
+- "Survival Mode" olettaa tällä hetkellä, että verkossa ei ole syklejä, mikä suuremmissa sukulaisuus verkoissa tuskin pitää paikkaansa.
 
 ### Lähteet
 - [Tietorakenne](https://youtu.be/gQ3iqBh69fU?t=240)
