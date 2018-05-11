@@ -1,4 +1,5 @@
-import datastructures.MyDeque;
+package datastructures;
+
 import graph.Person;
 import java.util.*;
 import org.junit.*;

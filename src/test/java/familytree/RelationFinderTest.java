@@ -1,5 +1,5 @@
+package familytree;
 
-import familytree.*;
 import graph.*;
 import org.junit.*;
 import static org.junit.Assert.*;

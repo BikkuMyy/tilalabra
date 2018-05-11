@@ -1,5 +1,6 @@
+package familytree;
+
 import java.util.*;
-import familytree.*;
 import graph.*;
 import org.junit.*;
 import static org.junit.Assert.*;

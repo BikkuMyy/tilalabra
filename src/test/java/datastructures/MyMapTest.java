@@ -1,4 +1,5 @@
-import datastructures.*;
+package datastructures;
+
 import java.util.*;
 import graph.Person;
 import org.junit.*;

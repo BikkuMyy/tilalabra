@@ -1,5 +1,6 @@
+package graph;
 
-import graph.*;
+import java.util.Map;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -31,8 +32,7 @@ public class FamilyTest {
     }
 
     @Test
-    public void nonExistingPersonIsFound() {
-        Person tester = new Person("Tester");
+    public void nonExistingPersonIsNotFound() {
         assertEquals(null, family.findPerson("Tester"));
     }
 
@@ -71,6 +71,13 @@ public class FamilyTest {
     @Test
     public void containsReturnsFalse() {
         assertFalse(family.containsPerson("Tester"));
+    }
+
+    @Test
+    public void familyMapIsReturned() {
+        family.addPerson(new Person("Test"));
+        Map<String, Person> familyMap = family.getFamilyMap();
+        assertTrue(familyMap.containsKey("Test"));
     }
 
 }

@@ -15,9 +15,9 @@ Syvyyshaun ja topologisen järjestämisen toteutuneet aikavaativuudet todennetti
 ![Topologinen järjestäminen](/dokumentaatio/topo_performance.png)
 
 ### Puutteet ja parannusehdotukset
-- Ohjelman käyttöä helpottaisi, jos sukulaisuusverkon sisältämät henkilöt voidaan lukea esim. JSON-tiedostosta, jossa kullekin henkilölle on valmiiksi määriteltynä suhteet, ja tallentaa edelleen samassa muodossa.
+- Ohjelman käyttöä helpottaisi, jos sukulaisuusverkon sisältämät henkilöt olisi mahdollista lukea esim. JSON-tiedostosta, jossa kullekin henkilölle on valmiiksi määriteltynä suhteet, ja tallentaa verkko edelleen samassa muodossa.
 - Lasten ja vanhempien väliset suhteet voitaisiin hoitaa suoraan pointtereita käyttämällä kaksinkertaisten listojen sijaan.
-- Henkilöiden yksilöinti muuten kuin vain nimen perusteella, jolloin täyskaimojen lisääminen on mahdollista, mutta samalla nimen perusteella tapahtuvien toiminnallisuuksien säilyttäminen
+- Henkilöiden yksilöinti muuten kuin vain nimen perusteella, jolloin täyskaimojen lisääminen olisi mahdollista, mutta samalla nimen perusteella tapahtuvien toiminnallisuuksien säilyttäminen
 - Omien tietorakenteiden toteutusta voisi yksinkertaistaa ja optimoida.
 - "Survival Mode" olettaa tällä hetkellä, että verkossa ei ole syklejä, mikä suuremmissa sukulaisuus verkoissa tuskin pitää paikkaansa.
 
