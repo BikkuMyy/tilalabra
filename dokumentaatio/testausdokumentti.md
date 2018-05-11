@@ -12,7 +12,9 @@ Ohjelman toimintojen testaaminen käyttöliittymän kautta:
 5. Valitse "Suhde" ja lisää kumppanuus lisätyn henkilön ja henkilön "Tiina" välille
 6. Valitse "Sukulaisuus" ja etsi lisätyllä henkilöllä ja henkilöllä "Daniel" -> "Henkilöt eivät ole sukua."
 7. Valitse "Sukulaisuus" ja etsi henkilöillä "Ales" ja "Kristof" -> "... ovat sukua".
-8. Valitse "Lopeta".
+8. Valitse "Survive" -> henkilöt topologisessa järjestyksessä sekä niiden etäsiyydet tulostuvat ruudulle.
+9. Valitse "Tyhjennä" ja "Kyllä" -> kunn valitset "Kaikki", ei tulostu mitään.
+10. Valitse "Lopeta".
 
 ### Suorituskykytestaus
 
